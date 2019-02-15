@@ -1,0 +1,115 @@
+%%%%%%%%%%%
+%full version vs short  %
+%%%%%%%%%%%
+%\def\full{0}  % version française
+\def\full{1} % version anglaise
+
+\newcommand{\french}[2]{\ifnum\full=1%
+#1
+\else%
+#2%
+\fi}
+
+\documentclass[11pt]{llncs}
+\usepackage[vmargin=2.6cm,hmargin=2.5cm]{geometry}
+% to typeset URLs, URIs, and DOIs
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage[titletoc]{appendix}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{tabularx} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings}
+\usepackage{enumitem}
+\usepackage{yfonts}
+\usepackage{tablefootnote}
+\usepackage[flushleft]{threeparttable} 
+
+
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+
+\usepackage[utf8]{inputenc}
+
+
+\def\UrlFont{\rmfamily}
+
+\input{ZZ_newcommand.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%
+%Inicio del documento%
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{center}
+	\textbf{\LARGE{Progress Report}}\\
+	\vspace{4mm}
+		\textbf{\large{Ida Tucker}}\\
+	\textbf{Supervised by Guilhem Castagnos and Fabien Laguillaumie}\\
+	\vspace{4mm}
+	\textbf{\large{1st year of doctoral degree. 2017 -- 2018}}
+\end{center}
+
+\vspace{3mm}
+
+\french{The objective of my thesis is to contribute to the construction of cryptographic primitives which guarantee advanced security properties, building upon the paradox of homomorphic encryption. A cryptosystem is said to be homomorphic if one can publicly manipulate secret data. For instance, an encryption protocol is linearly homomorphic if, knowing ciphertexts $c_1$ and $c_2$ associated to plaintexts $m_1$ and $m_2$, it is possible to produce a new ciphertext $c$ that will decrypt to the sum $m_1+m_2$. The paradox stems from the fact that though such a protocol proves to be extremely useful in building complex information systems (such as electronic voting), it cannot achieve the maximal level of security that is usually required of an encryption scheme.
+
+The first few months of my doctoral degree focussed on building functional encryption schemes for the computation of inner products, from linearly homomorphic cryptosystems. 
+
+Then, so as to abstract the properties of our underlying framework, and provide us with more genericity in future work, I built smooth projective hash functions from the assumptions developed in our previous work. Though such constructions are not of practical use out of the box, they are an amazingly versatile tool for building other advanced cryptographic primitives, and indeed allowed us to build traditional encryption schemes, and functional encryption schemes attaining the maximal level of security one can hope for, as well as two-party digital signatures over elliptic curves.
+
+}
+{L'objectif de ma thèse est de contribuer à la construction de primitives cryptographiques garantissant des propriétés de sécurité avancées, en s'appuyant sur le paradoxe de la cryptographie homomorphe. Un cryptosystème est dit homomorphe s'il est possible de manipuler publiquement des données secrètes. Par exemple, un schema de chiffrement est linéairement homomorphe si, connaissant les chiffrés $ c_1 $ et $ c_2 $ associés aux textes clairs $ m_1 $ et $ m_2 $, il est possible de produire un nouveau texte chiffré $ c $ qui sera déchiffré à la somme $ m_1 + m_2 $. Le paradoxe vient du fait que, même si un tel protocole s’avère extrêmement utile pour la construction de systèmes d’information complexes (tels que le vote électronique), il ne peut pas atteindre le niveau de sécurité maximal généralement requis par un système de chiffrement.
+
+Les premiers mois de mon doctorat ont été consacrés à la création de schémas de chiffrement fonctionnels pour le calcul de produits scalaires, à partir de cryptosystèmes linéairement homomorphes.}
+\section{Underlying Framework and Resulting Assumptions}\label{section:framework}
+All of my work builds upon the \cite{RSA:CasLag15} framework, which supposes the existence of a cyclic group $G$, in which some computationally hard assumption holds, together with a subgroup $F$ of $G$ where the discrete logarithm problem is easy.
+
+One of the main features of the framework is that it allows to encode information in the exponent of the subgroup of prime order $F$, which can be efficiently recovered whatever its size.
+
+In \cite{RSA:CasLag15}, the computational assumption is that the decision Diffie-Hellman (DDH) problem be hard in $G$. We introduce two new assumptions, an extended version of DDH,  and a hard subgroup membership assumption, which states that it is hard to distinguish $p-$th powers in $G$ from random elements of $G$.
+
+This framework can be instantiated in class groups of imaginary quadratic fields, and in \cite{RSA:CasLag15} Castagnos and Laguillaumie justify that though our assumptions may appear unusual, they are based on well studied computational problems, such as computing the class number of the maximal order of an imaginary quadratic field, or computing discrete logarithms in the class group of maximal order.
+
+From these assumptions we constructed generic, linearly homomorphic encryption schemes over a field of prime order which are semantically secure under chosen plaintext attacks.
+
+
+\section{Functional Encryption for Inner Product}
+Functional encryption (FE) is an advanced cryptographic primitive which allows, for a single encrypted message, to finely control how much information on the encrypted data each receiver can recover. To this end many functional secret keys are derived from a master secret key. Each functional secret key allows, for a ciphertext encrypted under the associated public key, to recover a specific function of the underlying plaintext. 
+
+My doctoral degree first focussed on constructing functional encryption schemes restricted to the class of linear functions, i.e. inner products. Though such schemes had already been conceived (\cite{PKC:ABDP15,EPRINT:ABCP16,C:AgrLibSte16}), they all suffered of practical drawbacks. Namely the computation of inner products modulo a prime are restricted, in that they require that the resulting inner product be small for decryption to be efficient. The only existing scheme that overcame this constraint suffered of poor efficiency due in part to very large ciphertexts.
+
+We worked on overcoming these limitations and constructed the first FE schemes for inner products modulo a prime that are both efficient and recover the result whatever its size.
+
+We then used the homomorphic properties of the above schemes to construct generic inner product FE schemes over the integers and over fields of prime order. Since the inner product is encoded in the exponent in the subgroup $F$, it can efficiently be recovered, whatever its size. 
+We thereby provided constructions for inner product FE modulo a prime $p$ that do not restrict the size of the inputs or of the resulting inner product, which are the most efficient such schemes to date.
+\vspace{-0.3cm}
+\paragraph{Submissions.} The above work led to a submission to \textbf{Asiacrypt 2018} whose final notification will be announced in August, in which we introduce the aforementioned cryptographic assumptions, the resulting homomorphic encryption schemes and functional encryption schemes.
+
+\section{Hash proof systems from our assumptions}
+We are currently working on building smooth projective hash functions from the assumptions developed in our previous work. Though such constructions are not of practical use out of the box, they are an amazingly versatile tool for building other advanced cryptographic primitives (such as password authenticated key exchange, lossy trapdoor functions \textit{etc.}). Thus from this initial construction we will achieve many concrete protocols, hopefully improving on existing schemes thanks to the original properties of our underlying assumptions and resulting linearly homomorphic cryptosystems we employ.
+
+\section{Two-Party ECDSA}
+
+\section{}
+\section{Hardware Security without Secure Hardware} 
+I am also working on an ongoing project with Damien Vergnaud, Céline Chevalier, Olivier Blazy, Patrick Towa Nguenewou and Laura Brouilhet which aims at building an encryption protocol achieving the benefits of hardware security (e.g. a smart card that converts a simple password remembered by the user into a more complex and secure cryptographic key), without actually using the hardware device -- thus avoiding the risk of loosing the device, which, in the wrong hands, could leak information on a users' secret key.
+
+The protocol involves three parties, (1) a user $\U$, in possession of a ciphertext $c$ which it wishes to decrypt, and a password which will be checked by the other parties before decryption. (2) A token $\T$ which plays the role of the hardware device (but must be implemented in software), and (3) a decryption server $\Serv$. The token and the server will essentially share a secret key, both shares of the key are necessary to be able to decrypt the ciphertext, while each key share individually should not allow $\Serv$ or $\T$ to gain any information on the underlying plaintext. This implies that the decryption protocol must be both blind and threshold. The scheme must also guarantee some form of verifiability, since $\U$ must be convinced that the plaintext that he recovers is indeed the valid decryption of the ciphertext $c$ he submits.
+
+ So far we have defined a security model for the primitive, and are working on a concrete protocol which relies on an El Gamal-like encryption, and smooth projective hash functions to guarantee both verifiability and decryption blindness. We aim to submit the final paper to \textbf{IEEE Security \& Privacy 2019} by July 1st of this year.
+ 
+ 
+\bibliographystyle{alpha-short}
+\bibliography{cryptobib/abbrev3,cryptobib/crypto}
+
+%\printbibliography[heading=none]
+		
+\end{document}

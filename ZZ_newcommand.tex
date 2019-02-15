@@ -1,0 +1,127 @@
+% Primitives
+\newcommand{\LTF}{\mathsf{LTF}}
+\newcommand{\ABOTDF}{\mathsf{ABO TDF}}
+\newcommand{\ABO}{\mathsf{ABO}}
+
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\Zp}{\Z/p\Z}
+\newcommand{\Zn}{\Z/n\Z}
+\newcommand{\Zs}{\Z/s\Z}
+\newcommand{\Zq}{\Z/q\Z}
+\newcommand{\Zpi}{(\Zp)^\times}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\ring}{\mathcal{R}}
+\newcommand{\lang}{\mathcal{L}}
+\newcommand{\rel}{\mathsf{R}}
+\newcommand{\Dp}{\mathcal{D}_p}
+\newcommand{\Gp}{G^p}
+\newcommand{\hash}{\mathcal{H}}
+\newcommand{\vhash}{\check{\mathcal{H}}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\IP}{\mathsf{IP}}
+
+\newcommand{\ODelta}{\mathcal{O}_{\Delta}}
+\newcommand{\Ok}{\mathcal{O}_{\Delta_K}}
+\newcommand{\OK}{\mathcal{O}_{\Delta_K}}
+\newcommand{\Op}{\mathcal{O}_{\Delta_p}}
+\newcommand{\Oq}{\mathcal{O}_{\Delta_q}}
+\newcommand{\phip}{\bar\varphi_p}
+\newcommand{\phipinv}{\varphi_p^{-1}}
+
+\newcommand{\f}{\textgoth{f}}
+
+\newcommand{\legendre}[2]{\left ( \frac{#1}{#2} \right )}
+\newcommand{\llegendre}[2]{( #1 / #2 )}
+
+\def\Red{\textsf{Red}}
+\newcommand{\ie}{\textit{i.\,e.}}
+\newcommand{\eg}{\textit{e.\,g.}}
+
+% Homomorphic encryption algorithms
+\newcommand{\pms}{\textsf{params}}
+\newcommand{\crs}{\textsf{crs}}
+\newcommand{\Kg}{\mathsf{KeyGen}}
+\newcommand{\Enc}{\mathsf{Encrypt}}
+\newcommand{\Dec}{\mathsf{Decrypt}}
+\newcommand{\EvalSum}{\mathsf{EvalSum}}
+\newcommand{\EvalScal}{\mathsf{EvalScal}}
+% Functional encryption algorithms
+\newcommand{\Setup}{\textsf{Setup}}
+\newcommand{\Kd}{\mathsf{KeyDer}}
+
+
+% Security
+\newcommand{\tb}{\mathsf{tb}}
+\newcommand{\ow}{\mathsf{ow}}
+\newcommand{\ind}{\mathsf{ind}}
+\newcommand{\indcpa}{\mathsf{ind\mbox{-}cpa}}
+\newcommand{\indcca}{\mathsf{ind\mbox{-}cca}}
+\newcommand{\indccaone}{\mathsf{ind\mbox{-}cca1}}
+\newcommand{\atk}{\mathsf{atk}}
+\newcommand{\cpa}{\mathsf{cpa}}
+\newcommand{\cca}{\mathsf{cca}}
+\newcommand{\ccaone}{\mathsf{cca1}}
+\newcommand{\ccatwo}{\mathsf{cca2}}
+\newcommand{\todo}[1]{{\textcolor{blue}{TODO: #1}}}
+
+\newcommand{\CL}{\mathsf{CL}}
+\newcommand{\Gen}{\mathsf{Gen}}
+\newcommand{\Solve}{\mathsf{Solve}}
+\newcommand{\rand}{\xleftarrow{\$}}
+\newcommand{\approxtext}[1]{\ensuremath{\stackrel{\text{#1}}{\approx}}}
+\newcommand{\capprox}{\approxtext{C}}
+\newcommand{\bit}{\{0,1\}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Adv}{\mathsf{Adv}}
+
+% Hardness assumptions
+\newcommand{\DL}{\mathsf{DL}}
+\newcommand{\PDL}{\mathsf{PDL}}
+\newcommand{\DDH}{\mathsf{DDH}}
+\newcommand{\DBDH}{\mathsf{DBDH}}
+\newcommand{\EDDH}{\mathsf{EDDH}}
+\newcommand{\DDHf}{\mathsf{DDH\mbox{-}f}}
+\newcommand{\LDH}{\mathsf{LDH}}
+\newcommand{\LWE}{\mathsf{LWE}}
+\newcommand{\CDH}{\mathsf{CDH}}
+\newcommand{\HSM}{\mathsf{HSM}}
+\newcommand{\DCR}{\mathsf{DCR}}
+\newcommand{\QR}{\mathsf{QR}}
+\newcommand{\DLin}{\mathsf{D-Lin}}
+
+% Algorithm variables
+\newcommand{\sk}{\mathsf{sk}}
+\newcommand{\pk}{\mathsf{pk}}
+\newcommand{\skx}{sk_{\vec{x}}}
+\newcommand{\sx}{\vec{s}_{\vec{x}}}
+\newcommand{\tx}{\vec{t}_{\textbf{x}}}
+\newcommand{\cy}{C_{\textbf{y}}}
+\newcommand{\xtop}{\textbf{X}_{\textsf{top}}}
+\newcommand{\lambdatop}{\Lambda_{\textsf{top}}}
+\newcommand{\Xbot}{\textbf{X}_{\textsf{bot}}}
+\newcommand{\xbot}{\textbf{x}_{\textsf{bot}}}
+\newcommand{\sz}{\vec{s}_{0}}
+\newcommand{\tz}{\vec{t}_{0}}
+\newcommand{\szi}{s_{0,i}}
+\newcommand{\tzi}{t_{0,i}}
+\newcommand{\xbar}{\overline{\textbf{x}}}
+\newcommand{\zxi}{z_{\textbf{x}_i}}
+\newcommand{\zx}{z_{\textbf{x}}}
+\newcommand{\sol}{\mathsf{sol}}
+\newcommand{\hk}{\mathsf{hk}}
+\newcommand{\vhk}{\check{\mathsf{hk}}}
+\newcommand{\pwd}{\mathsf{pwd}}
+
+
+\newcommand{\ida}[1]{\noindent\textcolor{BurntOrange}{Ida: #1}}
+\newcommand{\fab}[1]{\noindent\textcolor{red}{Fab: #1}}
+\newcommand{\guilhem}[1]{\noindent\textcolor{blue}{Guilhem: #1}}
+
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\Serv}{\mathcal{S}}
+\newcommand{\T}{\mathcal{T}}
