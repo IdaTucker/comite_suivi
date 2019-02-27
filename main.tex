@@ -10,8 +10,8 @@
 #2%
 \fi}
 
-\documentclass[11pt]{llncs}
-\usepackage[vmargin=2.6cm,hmargin=2.5cm]{geometry}
+\documentclass[10pt]{llncs}
+\usepackage[vmargin=2cm,hmargin=2cm]{geometry}
 % to typeset URLs, URIs, and DOIs
 \usepackage{url}
 \usepackage{hyperref}
@@ -49,64 +49,94 @@
 
 \begin{document}
 \begin{center}
-	\textbf{\LARGE{Progress Report}}\\
-	\vspace{4mm}
-		\textbf{\large{Ida Tucker}}\\
-	\textbf{Supervised by Guilhem Castagnos and Fabien Laguillaumie}\\
-	\vspace{4mm}
-	\textbf{\large{1st year of doctoral degree. 2017 -- 2018}}
+	\textbf{\Large{Progress Report -- Ida Tucker}}\\
+		\vspace{3mm}
+	\textbf{Supervised by Guilhem Castagnos ( LFANT, IMB, University of Bordeaux) and \\
+	Fabien Laguillaumie (AriC, LIP, University of Lyon 1)}\\
 \end{center}
 
 \vspace{3mm}
 
-\french{The objective of my thesis is to contribute to the construction of cryptographic primitives which guarantee advanced security properties, building upon the paradox of homomorphic encryption. A cryptosystem is said to be homomorphic if one can publicly manipulate secret data. For instance, an encryption protocol is linearly homomorphic if, knowing ciphertexts $c_1$ and $c_2$ associated to plaintexts $m_1$ and $m_2$, it is possible to produce a new ciphertext $c$ that will decrypt to the sum $m_1+m_2$. The paradox stems from the fact that though such a protocol proves to be extremely useful in building complex information systems (such as electronic voting), it cannot achieve the maximal level of security that is usually required of an encryption scheme.
 
-The first few months of my doctoral degree focussed on building functional encryption schemes for the computation of inner products, from linearly homomorphic cryptosystems. 
+ The fundamental task in cryptography is to enable parties to communicate ``securely'' over an insecure channel, in a way that guarantees confidentiality, integrity and authenticity of their communication (among other potential security goals). 
+%
+In traditional public key encryption (PKE), Alice -- who wants to securely deliver a message $m$ to Bob -- encrypts $m$ using Bob's public key $\mathsf{pk}_{B}$, such that only Bob can decrypt the ciphertext using his secret key $\mathsf{sk}_{B}$ associated to $\mathsf{pk}_{B}$ (thus recovering $m$ in its entirety).
 
-Then, so as to abstract the properties of our underlying framework, and provide us with more genericity in future work, I built smooth projective hash functions from the assumptions developed in our previous work. Though such constructions are not of practical use out of the box, they are an amazingly versatile tool for building other advanced cryptographic primitives, and indeed allowed us to build traditional encryption schemes, and functional encryption schemes attaining the maximal level of security one can hope for, as well as two-party digital signatures over elliptic curves.
+However many real world problems can not be solved with traditional PKE. Take for instance a hospital, which wishes to share medical data with researchers so as to facilitate medical innovations and discoveries, without disclosing any information on the patients' identities, for obvious confidentiality reasons.
+Traditional PKE cannot deal with such a fine grained access to information, which is why, to solve such problems, \emph{advanced} cryptographic primitives must be defined. Moreover, in order to guarantee a high level of trust in the security of concrete solutions, the schemes instantiating these primitives must be provably secure.
 
-}
-{L'objectif de ma thèse est de contribuer à la construction de primitives cryptographiques garantissant des propriétés de sécurité avancées, en s'appuyant sur le paradoxe de la cryptographie homomorphe. Un cryptosystème est dit homomorphe s'il est possible de manipuler publiquement des données secrètes. Par exemple, un schema de chiffrement est linéairement homomorphe si, connaissant les chiffrés $ c_1 $ et $ c_2 $ associés aux textes clairs $ m_1 $ et $ m_2 $, il est possible de produire un nouveau texte chiffré $ c $ qui sera déchiffré à la somme $ m_1 + m_2 $. Le paradoxe vient du fait que, même si un tel protocole s’avère extrêmement utile pour la construction de systèmes d’information complexes (tels que le vote électronique), il ne peut pas atteindre le niveau de sécurité maximal généralement requis par un système de chiffrement.
+Provable security \cite{GolMic84} relies on the principle that the security of cryptographic schemes is based on mathematically precise assumptions. These assumptions can be general (such as the existence of one-way functions) or specific (such as the hardness of the discrete logarithm problem in specific group families). The security argument is a reduction (in the complexity theory meaning) transforming any adversary against a cryptographic protocol into an algorithm that solves the underlying mathematical problem.
 
-Les premiers mois de mon doctorat ont été consacrés à la création de schémas de chiffrement fonctionnels pour le calcul de produits scalaires, à partir de cryptosystèmes linéairement homomorphes.}
-\section{Underlying Framework and Resulting Assumptions}\label{section:framework}
-All of my work builds upon the \cite{RSA:CasLag15} framework, which supposes the existence of a cyclic group $G$, in which some computationally hard assumption holds, together with a subgroup $F$ of $G$ where the discrete logarithm problem is easy.
+My research focusses on the construction of provably secure advanced cryptographic primitives, building upon the paradox of homomorphic encryption. Specifically, my research grounds itself on the linearly homomorphic cryptosystem developed in \cite{RSA:CasLag15} which benefits from the uncommon property of having a prime order plaintext space.
+A cryptosystem is said to be homomorphic if one can publicly manipulate secret data. For instance, an encryption protocol is linearly homomorphic if, knowing ciphertexts $c_1$ and $c_2$ associated to plaintexts $m_1$ and $m_2$, it is possible to produce a new ciphertext $c$ that will decrypt to the sum $m_1+m_2$. The paradox stems from the fact that though such a protocol proves to be extremely useful in building complex information systems, it cannot achieve the maximal level of security that is usually required of an encryption scheme.
+%
 
-One of the main features of the framework is that it allows to encode information in the exponent of the subgroup of prime order $F$, which can be efficiently recovered whatever its size.
-
-In \cite{RSA:CasLag15}, the computational assumption is that the decision Diffie-Hellman (DDH) problem be hard in $G$. We introduce two new assumptions, an extended version of DDH,  and a hard subgroup membership assumption, which states that it is hard to distinguish $p-$th powers in $G$ from random elements of $G$.
-
-This framework can be instantiated in class groups of imaginary quadratic fields, and in \cite{RSA:CasLag15} Castagnos and Laguillaumie justify that though our assumptions may appear unusual, they are based on well studied computational problems, such as computing the class number of the maximal order of an imaginary quadratic field, or computing discrete logarithms in the class group of maximal order.
-
-From these assumptions we constructed generic, linearly homomorphic encryption schemes over a field of prime order which are semantically secure under chosen plaintext attacks.
-
+The first few months of my PhD focussed on building functional encryption schemes for the computation of inner products;
+%
+I then developed tools to abstract away the properties of our underlying framework, which allow for more genericity in future work. These tools enabled us to build other advanced cryptographic primitives, such as two-party digital signatures over elliptic curves; and to enhance the security properties of our existing constructions.
 
 \section{Functional Encryption for Inner Product}
-Functional encryption (FE) is an advanced cryptographic primitive which allows, for a single encrypted message, to finely control how much information on the encrypted data each receiver can recover. To this end many functional secret keys are derived from a master secret key. Each functional secret key allows, for a ciphertext encrypted under the associated public key, to recover a specific function of the underlying plaintext. 
+Functional encryption (FE)
+\cite{TCC:BonSahWat11,EPRINT:ONeill10b} is an advanced cryptographic primitive which allows, for a single encrypted message, to finely control how much information on the encrypted data each receiver can recover. To this end many functional secret keys are derived from a master secret key. Each functional secret key allows, for a ciphertext encrypted under the associated public key, to recover a specific function of the underlying plaintext. 
 
-My doctoral degree first focussed on constructing functional encryption schemes restricted to the class of linear functions, i.e. inner products. Though such schemes had already been conceived (\cite{PKC:ABDP15,EPRINT:ABCP16,C:AgrLibSte16}), they all suffered of practical drawbacks. Namely the computation of inner products modulo a prime are restricted, in that they require that the resulting inner product be small for decryption to be efficient. The only existing scheme that overcame this constraint suffered of poor efficiency due in part to very large ciphertexts.
+If we could instantiate such a primitive, that supports the creation of functional secret keys for any function $f$, one could solve the problem mentioned in the introduction, and in fact one could embed anything from complex spam filters to image recognition algorithms into encryption systems.
+%
+%
+Unfortunately, though FE schemes for general circuits have been put forth, these schemes are far from practical, and either highly restrict the adversary model, or rely on non-standard and ill-understood cryptographic assumptions.
 
-We worked on overcoming these limitations and constructed the first FE schemes for inner products modulo a prime that are both efficient and recover the result whatever its size.
+Abdalla et al \cite{PKC:ABDP15} identified the great potential of restricting the functions computed by an FE scheme to the class of linear functions, i.e. inner products (hereafter denoted IPFE). Such restricted FE constructions have many concrete applications, while developing our understanding of general FE, and are thus both of practical and theoretical interest. However, though many schemes had been put forth \cite{PKC:ABDP15,EPRINT:ABDP16,C:AgrLibSte16}, these all suffered of practical drawbacks. Namely the computation of inner products modulo a prime were restricted, in that they required that the resulting inner product be small for decryption to be efficient. The only existing scheme that overcame this constraint \cite{C:AgrLibSte16} suffers of poor efficiency due in part to very large ciphertexts.
 
-We then used the homomorphic properties of the above schemes to construct generic inner product FE schemes over the integers and over fields of prime order. Since the inner product is encoded in the exponent in the subgroup $F$, it can efficiently be recovered, whatever its size. 
-We thereby provided constructions for inner product FE modulo a prime $p$ that do not restrict the size of the inputs or of the resulting inner product, which are the most efficient such schemes to date.
-\vspace{-0.3cm}
-\paragraph{Submissions.} The above work led to a submission to \textbf{Asiacrypt 2018} whose final notification will be announced in August, in which we introduce the aforementioned cryptographic assumptions, the resulting homomorphic encryption schemes and functional encryption schemes.
-
-\section{Hash proof systems from our assumptions}
-We are currently working on building smooth projective hash functions from the assumptions developed in our previous work. Though such constructions are not of practical use out of the box, they are an amazingly versatile tool for building other advanced cryptographic primitives (such as password authenticated key exchange, lossy trapdoor functions \textit{etc.}). Thus from this initial construction we will achieve many concrete protocols, hopefully improving on existing schemes thanks to the original properties of our underlying assumptions and resulting linearly homomorphic cryptosystems we employ.
+My doctoral degree first focussed on overcoming these limitations and constructing the first FE schemes for inner products modulo a prime that are both efficient and recover the result whatever its size.
+%
+To this end we introduced two new cryptographic assumtions, and resulting generic, linearly homomorphic encryption schemes over a field of prime order  (variants of the \cite{RSA:CasLag15} cryptosystem) which are secure against passive adversaries (the adversary only observes communications, and tries to extract sensitive information).
+%
+We then used the homomorphic properties of the above schemes to construct generic IPFE schemes over the integers and over fields of prime order, such that the inner product can efficiently be recovered, whatever its size. 
+We thereby provided constructions for IPFE modulo a prime $p$ that do not restrict the size of the inputs or of the resulting inner product, which are the most efficient such schemes to date.
+%
+Our paper \cite{AC:CasLagTuc18}, which appeared at \textbf{Asiacrypt 2018}, introduces the aforementioned assumptions, and resulting homomorphic encryption schemes and FE schemes.
 
 \section{Two-Party ECDSA}
+As mentioned in the introduction, the homomorphic properties of our framework can be used to build various advanced cryptographic primitives, thus after spending some time on IPFE we moved on to studying the construction of two-party elliptic curve digital signatures (ECDSA).
+%
+ECDSA is a widely adopted digital signature standard. Unfortunately, efficient distributed variants of this primitive are notoriously hard to achieve. 
 
-\section{}
-\section{Hardware Security without Secure Hardware} 
-I am also working on an ongoing project with Damien Vergnaud, Céline Chevalier, Olivier Blazy, Patrick Towa Nguenewou and Laura Brouilhet which aims at building an encryption protocol achieving the benefits of hardware security (e.g. a smart card that converts a simple password remembered by the user into a more complex and secure cryptographic key), without actually using the hardware device -- thus avoiding the risk of loosing the device, which, in the wrong hands, could leak information on a users' secret key.
+Threshold signatures allow $n$ users to share a common key in such a way that any subset of $t$ parties can use this key to sign, while any coalition of less than $t$ can do nothing. 
+%
+Such signatures are in high demand today; partly due to their applications to secure cryptocurrency wallets (where key shares are spread over multiple devices and so are hard to steal) and cryptocurrency custody solutions (where large sums of invested cryptocurrency are strongly protected by splitting the key between a bank/financial institution, the customer who owns the currency, and possibly a third-party trustee, in multiple shares at each).
 
-The protocol involves three parties, (1) a user $\U$, in possession of a ciphertext $c$ which it wishes to decrypt, and a password which will be checked by the other parties before decryption. (2) A token $\T$ which plays the role of the hardware device (but must be implemented in software), and (3) a decryption server $\Serv$. The token and the server will essentially share a secret key, both shares of the key are necessary to be able to decrypt the ciphertext, while each key share individually should not allow $\Serv$ or $\T$ to gain any information on the underlying plaintext. This implies that the decryption protocol must be both blind and threshold. The scheme must also guarantee some form of verifiability, since $\U$ must be convinced that the plaintext that he recovers is indeed the valid decryption of the ciphertext $c$ he submits.
+For the two party case ($t=n=2$), Lindell \cite{C:Lindell17} recently published an efficient solution which, unfortunately, relies on an interactive, non standard, assumption. We first generalized Lindell’s solution using a tool from \cite{EC:CraSho02}, before instantiating the construction from our assumptions defined in \cite{AC:CasLagTuc18}. This generic method results in a tight security proof relying on standard assumptions, while
+%
+our instantiation is comparable to that of Lindell's in terms of timings, and significantly improves communication cost.
 
- So far we have defined a security model for the primitive, and are working on a concrete protocol which relies on an El Gamal-like encryption, and smooth projective hash functions to guarantee both verifiability and decryption blindness. We aim to submit the final paper to \textbf{IEEE Security \& Privacy 2019} by July 1st of this year.
- 
- 
+This work has been submitted to \textbf{CRYPTO 2019}. The final notification will be announced in April. This is joint work with my supervisors, along with Catalano and Savasta (University of Catania).
+
+
+
+\section{Ongoing work and Future perspectives}
+\paragraph{IPFE Secure Against Active Adversaries.}
+The next logical step forward from our work on functional encryption was to conceive IPFE schemes which attain security against active adversaries ($\indcca$ security). Active adversaries may tamper with ciphertexts before requesting decryption so as to gain information by deviating from the protocol. In order to attain $\indcca$ security, one needs to ensure both confidentiality and ciphertext integrity.
+%
+A commonly used tool to acheive ciphertext integrity are hash proof systems (HPS) \cite{EC:CraSho02}.
+Thus, from the cryptographic assumptions developed in \cite{AC:CasLagTuc18} we detail two HPSs, which abstract away the properties of our framework and assumptions, and allow for much more genericity and modularity in subsequent work.
+%
+Indeed though such constructions are not of practical use out of the box, they are an amazingly versatile tool for building advanced cryptographic primitives. And indeed as expected -- having designed a generic construction from HPSs to $\indcca$ secure IPFE -- we were able to instantiate $\indcca$ secure public key encryption and IPFE schemes from multiple assumptions. 
+
+The high level idea is that one adds a test to the decryption algorithm, such that any malformed ciphertext -- which could potentially leak more information to the adversary than that revealed by the scheme's public parameters -- will be rejected, and cause the decryption algorithm to abort. 
+This implies that decryption requests do not reveal significantly more information than what an adversary could obtain by choosing a plaintext and encrypting it alone. 
+
+We intend to submit this work to \textbf{Asiacrypt 2019}.
+
+\paragraph{Threshold ECDSA.}
+We believe that the ideas of our generic construction for two-party ECDSA will lead to improvements in the general case of threshold ECDSA signatures, i.e. for any number of parties. 
+
+\paragraph{Hardware Security without Secure Hardware.}
+I am also working on an ongoing project with Blazy, Brouilhet (Cryptis, XLim), Chevalier (ENS, Université Panthéon-Assas Paris 2), Towa Nguenewou (IBM Research – Zurich) and Vergnaud (LIP6, Sorbonne Université) which again makes use of the malleability of secret information from public data. This work aims at building an encryption protocol achieving the benefits of hardware security (e.g. a smart card that converts a simple password remembered by the user into a more complex and secure cryptographic key), without actually using the hardware device -- thus avoiding the risk of loosing the device, which, in the wrong hands, could leak information on a users' secret key.
+%
+%The protocol involves three parties, a user $\U$, in possession of a ciphertext $c$ which it wishes to decrypt, and a password which will be checked by the other parties before decryption. A token $\T$ which plays the role of the hardware device (but is implemented in software), and a decryption server $\Serv$. Essentially $\T$ and $\Serv$ share a secret key, both shares of the key are necessary to be able to decrypt the ciphertext, while each key share individually should not allow $\Serv$ or $\T$ to gain any information on the underlying plaintext. Thus the decryption protocol must be guarantee confidentiality and distributivity properties. The scheme must also allow $\U$ to verify that the plaintext it recovers is indeed the valid decryption of the ciphertext $c$ he submits.
+%
+So far we have defined a security model for the primitive, and are working on a concrete protocol.
+
+
 \bibliographystyle{alpha-short}
 \bibliography{cryptobib/abbrev3,cryptobib/crypto}
 

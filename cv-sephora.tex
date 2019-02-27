@@ -1,0 +1,114 @@
+\documentclass[11pt,a4paper]{moderncv}
+
+\moderncvtheme[blue]{classic} 
+\usepackage[utf8]{inputenc}  %Windows 
+
+%\usepackage[scale=0.975]{geometry}
+\setlength{\hintscolumnwidth}{3cm}
+\setlength{\quotewidth}{0.8\textwidth}
+\usepackage[top=0.5cm, bottom=0.5cm, left=1cm, right=1cm]{geometry}
+\usepackage{graphicx}
+
+\firstname{Ida}
+\familyname{Tucker}
+\title{PhD Student in Cryptography}         
+\address{12 rue de la Grande Famille}{69007 Lyon}   
+\mobile{06.44.72.98.51}    
+%\phone{}                
+%\fax{Votre Fax}                      
+\email{ida.tucker@ens-lyon.fr}
+\extrainfo{Nationality: French \& British}
+\quote{Research Interests: Malleable Encryption and Construction of Advanced Cryptographic Systems.}         
+\makeatletter
+\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+\makeatother
+
+\usepackage{multibib}
+\newcites{book,misc}{{Books},{Others}}
+
+\nopagenumbers{}                         
+
+\begin{document}
+\maketitle
+\section{Education}
+\cventry{Oct 2017 --}{PhD Student}{École Normale Supérieure de Lyon}{France}{}{Construction of Advanced Cryptographic Systems from Homomorphic Building Blocs. Funded by the ANR project ALAMBIC. Supervised by Guilhem Castagnos and Fabien Laguillaumie.
+\\Focus on building practical and efficient schemes for functional encryption. Functional encryption is an advanced cryptographic primitive which allows, for a single encrypted message, to finely control how much information on the encrypted data each receiver can recover. }
+%\begin{itemize}
+%\item Building practical and efficient schemes for functional encryption. Functional encryption is an advanced cryptographic primitive which allows, for a single encrypted message, to finely control how much information on the encrypted data each receiver can recover.
+%\item Our schemes allow users to recover the inner product between the encrypted message and user specific vectors. Such constructions enable the computation of weighted averages and sums, which are of use for statistical analysis on encrypted data, where the statistical analysis itself has sensitive information.
+%\item Security is proven under strongly grounded and mathematically precise cryptographic assumptions.
+%
+%\item Cryptographic assumptions supposing the existence of a cyclic group $G$ where the decision Diffie-Hellman assumption holds containing a subgroup $F$ where the discrete logarithm problem is easy.
+%\item Constructing functional encryption schemes for computing inner products modulo a prime, that do not restrict the size of the inputs or of the resulting inner product.
+%\item Building smooth projective hash functions from the aforementioned assumptions.
+%\item Hardware security without secure hardware, i.e. token and server aided signatures and decryption.
+%\end{itemize} }
+\cventry{2015--2017}{Master of Science in Cryptology and IT Security}{University of Bordeaux}{France}{Mention Très Bien}{Included the study of Advanced Cryptography, Cryptanalysis, Elliptic Curves, Computer Algebra, Automata and Complexity, Information Theory, Smart Cards, Software Security, Software Verification, Network Security, Operating Systems, C and Java Programming.}
+\cventry{2012--2013}{Bachelor’s Degree in Mathematics specialised in Mathematics and Computer Science}{University of Bordeaux}{France}{Mention Bien}{}
+\cventry{2009--2012}{Preparatory School for entering Top Schools, in Mathematics, Physics and Engineering}{Lycée Michel Montaigne}{Bordeaux, France}{}{} 
+%\cventry{2008}{Science Baccalaureate}{Lycée de Navarre}{St Jean Pied de Port, France}{Mention Bien}{}
+
+\section{Projects}
+\cvline{2017}{Masters' research project (2nd year): ``State of the art in lattice based proofs of knowledge''.}
+\cvline{2016}{Masters' research project (1st year): ``Study and implementation of the SHA-3 hashing algorithm, and comparison to systems based on the Merkle Damgård construction'.'}
+
+\section{Employment}
+\subsection{Research}
+%
+\cventry{March-Sept 2017}{Research Internship}{L.I.R.M.M.}{Montpellier, France}{}{Internship in the field of lattice-based cryptography supervised by Fabien Laguillaumie. Subject: Verifiable encryption of predictable data for deduplicated storage.}
+\subsection{Teaching}
+\cventry{Jan-June 2018}{Teaching Assistant}{University Claude Bernard Lyon 1}{}{}{\begin{itemize}
+\item Cryptography (M1)
+\item Networking \& Web Programming (L1)
+\end{itemize}}
+\cventry{Jan-May 2017}{Teaching Assistant}{University of Bordeaux}{Software Security (M1)}{}{}
+\subsection{Software Development}
+\cventry{Nov 2013 - Aug 2015}{Software Engineer}{RDT Ltd.}{Kings Hill, UK}{}{Implemented and supported an application enabling insurance companies to manage their business. Team work, compliance with delivery times, Agile project management approach and Scrum methodology. Direct communication with highly demanding and influential customers.
+Decision making.}
+
+\section{Publications}
+\subsection{Conferences}
+\cvitem{}{G. Castagnos, F. Laguillaumie and I. Tucker. Practical Fully Secure Unrestricted Inner Product Functional Encryption modulo $p$. Proc. of Asiacrypt 2018, Part II, Springer LNCS Vol. 11273, 1-32 (2018) Copyright IACR. \url{http://eprint.iacr.org/2018/791}}
+\subsection{Work in Progress}
+\cvitem{}{O. Blazy, L. Brouilhet, C. Chevalier, P. Towa Nguenewou, I. Tucker and D. Vergnaud. Hardware Security without Secure Hardware: Digital Signatures \& Decryption.
+(22 pages)}
+
+\section{Talks}
+\subsection{Scientific Events}
+\cventry{Nov 2018}{Lfant Seminar}{IMB}{Bordeaux, France}{}{Inner Product Functional Encryption modulo a prime $p$.}
+\cventry{Oct 2018}{The GT-C2 Days}{LIP}{Aussois, France}{}{Unrestricted Functional Encryption for the Evaluation of Inner Products modulo a prime $p$.}
+\cventry{June 2017}{ECO Seminar}{LIRMM}{Montpellier, France}{}{Verifiable Encryption of Predictable Data for Deduplicated Storage.}
+\subsection{Science Popularisation}
+\cventry{April 2018}{Encounters with middle school students}{Collège Maria Casarès}{Rillieux-la-Pape, France}{}{Open discussions and interaction between secondary school students and doctoral researchers.}
+
+\section{Active Involvement in Scientific Events}
+\cvitem{October 2018}{REDOCS 2018, Rencontres Entreprises-DOCtrorants en Sécurité, CNRS event in which PhD students in IT security work for a week on problems set by industries, Gif-sur-Yvette, France.}
+\subsection{Volunteering}
+\cvitem{October 2018}{Volunteer for the organisation of the GT-C2 Days, LIP, Aussois, France.}
+\cvitem{April 2017}{Volunteer for the IEEE Symposium on Security and Privacy, and EUROCRYPT 2017 Workshops, University Pierre et Marie Curie, Paris, France.}
+\subsection{Young Researchers' Schools}
+\cvitem{August 2018}{Swedish Summer School in Computer
+Science 2018, mini-courses on Quantum Computing by Ronald de Wolf and Lattices and Cryptography by Oded Regev, Stockholm, Sweden.}
+\cvitem{March 2018}{Post-Scryptum Spring school, dedicated to algorithmic methods for post-quantum cryptography, near Grenoble, France.}
+\subsection{Training}
+\cvitem{Jan-March 2018}{Science popularisation: communicating one's research to all publics, with Isabelle Bonardi at the University of Lyon, France.}
+
+\section{Events I attended}
+\cvitem{May 2018}{Eurocrypt 2018, Tel Aviv, Israel.}
+\cvitem{March 2017}{Journées nationales GDR Informatique Mathématique, LIRMM, Montpellier, France.}
+\cvitem{2017-2018}{Monthly lattice meetings, École Normale Supérieure de Lyon, France.}
+
+\section{Administrative Responsibilities}
+\cvitem{2018-2019}{Elected representative of non permanent members at the LIP laboratory council.}
+\cvitem{2018}{Organising \emph{PhD Days} social event. Aims to bring together PhD students of the LIP laboratory, to share experience and learn from one another.}
+
+\section{Technical Skills}
+\cvline{Languages}{C, C\#, sage, Pari GP, JAVA, HTML/CSS, PHP, transact SQL.}
+\cvline{IDE and Version Control}{SVN, Git, Team Foundation Server, Emacs, Eclipse, Visual Studio 2012 and 2015, SQL Server.}
+%\cvline{OS}{Linux (Ubuntu), Mac OS X.}
+
+\section{Extra-Curricular Activities}
+\cvline{Languages}{Bilingual in French and English. Intermediate level in Spanish. Learning Italian.}
+\cvline{Other}{Very active I enjoy hiking, rock climbing and cross country running. I also play the flûte in a brass band, and love cooking.}
+\end{document}
+

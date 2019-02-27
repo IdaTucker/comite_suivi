@@ -1,0 +1,90 @@
+\begin{frame}{Functional Encryption}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xEmployees{8}
+
+\def\yEmployeeProfile{8}
+\def\yOfficeWorker{6}
+\def\yTelephoneOperator{4}
+\def\yManWithSunglasses{2}
+
+
+% Encryptor x,y coordinates; width and height
+\def\xEncryptor{0}
+\def\yEncryptor{5}
+
+% Other
+\def\xMiddle{4}
+
+
+\node[inner sep=0pt] at (\xEmployees ,\yEmployeeProfile)
+ {\includegraphics[width=0.1\textwidth]{img/employee-profile.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yOfficeWorker)
+ {\includegraphics[width=0.1\textwidth]{img/office-worker-outline.png}};
+
+\node[inner sep=0pt] at (\xEmployees ,\yTelephoneOperator)
+ {\includegraphics[width=0.1\textwidth]{img/telephone-operator.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yManWithSunglasses)
+ {\includegraphics[width=0.1\textwidth]{img/man-with-sunglasses.png}};
+
+\node[inner sep=0pt] at (\xEncryptor ,\yEncryptor)
+ {\includegraphics[width=0.1\textwidth]{img/document.png}};
+
+\node[align=center, yellow] at (\xEmployees ,\yEmployeeProfile-0.8) {$\sk_{F_1}$}; 
+\node[align=center, blue] at (\xEmployees ,\yOfficeWorker-0.8) {$\sk_{F_2}$}; 
+\node[align=center, purple] at (\xEmployees ,\yTelephoneOperator-0.8) {$\sk_{F_3}$}; 
+\node[align=center, amaranth] at (\xEmployees ,\yManWithSunglasses-0.8) {$\sk_{F_4}, \textcolor{blue}{\sk_{F_2}}$}; 
+%\node[align=center, black] at (\xEncryptor ,\yEncryptor+1) {$\msk, \pk$}; 
+\node[align=center, black] at (\xEncryptor ,\yEncryptor-0.8) {$m$}; 
+
+\onslide<1>{
+\draw[-triangle 60, yellow, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor-1.5, \yEncryptor-2);
+\draw[-triangle 60, blue, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor-0.5, \yEncryptor-2.7);
+\draw[-triangle 60, purple, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor+0.5, \yEncryptor-2.7);
+\draw[-triangle 60, amaranth, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor+1.5, \yEncryptor-2);
+
+\node[align=center, yellow] at (\xEncryptor-1.7, \yEncryptor-2.3) {$m_1=F_1(m)$}; 
+\node[align=center, blue] at (\xEncryptor-1, \yEncryptor-3) {$m_2=F_2(m)$}; 
+\node[align=center, purple] at (\xEncryptor+1, \yEncryptor-3) {$m_3=F_3(m)$}; 
+\node[align=center, amaranth] at (\xEncryptor+1.7, \yEncryptor-2.3) {$m_4=F_4(m)$}; 
+}
+
+
+
+
+
+\onslide<2->
+{
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle, \yEmployeeProfile-0.2);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yOfficeWorker);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yTelephoneOperator);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yManWithSunglasses);
+
+\node[align=center, black] at (\xEncryptor ,\yEncryptor-1.2) {$C =\Enc (\pk, m)$}; 
+
+\node[align=center,yellow] at (\xMiddle +1.8 ,\yEmployeeProfile-0.2) {$F_1(m)=\Dec(\sk_{F_1}, C)$}; 
+\node[align=center,blue] at (\xMiddle +1.8,\yOfficeWorker) {$F_2(m)=\Dec(\sk_{F_2}, C)$}; 
+\node[align=center,purple] at (\xMiddle +1.8,\yTelephoneOperator) {$F_3(m)=\Dec(\sk_{F_3}, C)$}; 
+\node[align=center, amaranth] at (\xMiddle+1.8 ,\yManWithSunglasses) {$F_4(m)=\Dec(\sk_{F_4}, C)$}; 
+\node[align=center,blue] at (\xMiddle +1.8,\yManWithSunglasses-0.4) {$F_2(m)=\Dec(\sk_{F_2}, C)$}; 
+
+}
+
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+
+\note{
+This is exactly what functional encryption aims to do, only what I here called 'a part of the information on m' is a function of $m$, so a secret key will be associated to a given function. And given an encryption of $m$, and a secret key associated to a function $F$, decryption with this secret key will recover $F(m)$.
+Applications:
+\begin{itemize}
+\item Statistical analysis on medical data
+\item Spam filtering
+\end{itemize}
+}

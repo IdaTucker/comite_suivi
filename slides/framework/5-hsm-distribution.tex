@@ -1,0 +1,17 @@
+\begin{frame}{Sampling exponents}
+\begin{variableblock}{Problem}{bg=black!2,fg=black}{bg=amaranth,fg=black!2}
+\textbf{$s$ unknown}, so orders of $G^p$ and $G$ unknown\\
+\hspace{2cm}$\Rightarrow$ \textbf{Cannot sample uniformly} from $G$ or $G^p$!
+\end{variableblock}
+\onslide<2->{
+\begin{variableblock}{Solution}{bg=black!2,fg=black}{bg=darkjunglegreen,fg=black!2}
+\begin{itemize}
+\item Bound on $h(\mathcal{O}_{\Delta_K})$  $\Rightarrow$ upper bound $\tilde{s}$ for $s$
+\item Use $\tilde{s}$ to instantiate distributions $\D$ and $\D_p$ s.t. 
+$$\{g^x,x \hookleftarrow \D\}\approx \mathcal{U}(G),$$
+$$\mbox{and }\{g_p^x,x \hookleftarrow \D_p\}\approx \mathcal{U}(G^p)\quad$$
+\item \textbf{In practice:} $\D$ and $\D_p$ folded gaussian distributions with large standard deviation.
+\end{itemize}
+\end{variableblock}
+}
+\end{frame}

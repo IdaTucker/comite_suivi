@@ -1,0 +1,15 @@
+\begin{frame}{$\DDHf$ assumption}
+
+\begin{variableblock}{Intuitively}{bg=black!2,fg=mDarkTeal}{bg=mLightBrown,fg=black!2}
+No PPT attacker $\A$ can win the $\DDHf$ experiment with probability significantly greater than $1/2$.
+\end{variableblock}
+
+\onslide<2>{\begin{variableblock}{Formally}{bg=black!2,fg=mDarkTeal}{bg=mLightBrown,fg=black!2}
+The $\DDHf$ problem is said to be hard in $G$ if for all probabilistic polynomial time attacker $\A$, $\Adv^{\DDHf}_{\A}(\lambda,\mu)$ is negligible, where:
+\begin{equation*}
+\tcbhighmath[drop fuzzy shadow]{
+\Adv^{\DDHf}_{\A}(\lambda,\mu) = \biggl | 2 \cdot \Pr \bigl [b=b^\star \bigr ] - 1 \biggr |}
+\end{equation*}
+\end{variableblock}
+}
+\end{frame}

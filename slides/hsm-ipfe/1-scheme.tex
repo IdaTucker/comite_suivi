@@ -1,0 +1,201 @@
+\begin{frame}{IPFE scheme mod $p$ from $\HSM$ \small(simplified)}
+\begin{figure}[H]
+\begin{tikzpicture}
+
+% Setup x,y coordinates; width and height
+\def\xsetup{-1}
+\def\ysetup{9}
+\def\wsetup{11}
+\def\hsetup{1}
+\def\topsetup{\ysetup+\hsetup}
+
+% Enc x,y coordinates; width and height
+\def\wenc{11}
+\def\henc{2}
+\def\xenc{-1}
+\def\yenc{\ysetup - \henc - 0.2}
+\def\topenc{\yenc+\henc}
+
+% Key derivation x,y coordinates; width and height
+\def\wKd{11}
+\def\hKd{1.1}
+\def\xKd{-1}
+\def\yKd{\yenc-\hKd-0.2}
+\def\topKd{\yKd+\hKd}
+
+% Decryption x,y coordinates; width and height
+\def\hdec{2}
+\def\wdec{11}
+\def\xdec{-1}
+\def\ydec{\yKd-\hdec-0.2}
+\def\topdec{\ydec+\hdec}
+
+% Small spacing between text
+\def\swspace{0.4}
+
+% Normal spacing between text
+\def\nwspace{0.5}
+
+% Normal spacing top and first text
+\def\ntopspace{0.3}
+
+
+
+% Orange boxes:
+\onslide<1>{
+% Setup 
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xsetup,\ysetup) rectangle ++(\wsetup,\hsetup);
+}
+
+\onslide<2>{
+% Encryption
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xenc,\yenc) rectangle ++(\wenc,\henc);
+}
+%\onslide<3>{
+%% Encryption
+% \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+%  (\xenc,\yenc) rectangle ++(\wenc,\henc);
+%}
+
+\onslide<3>{
+% Key derivation
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xKd,\yKd) rectangle ++(\wKd,\hKd);
+}
+
+
+% Setup
+\onslide<1->{
+\node[align=left] at  (\xsetup + 0.7 ,\topsetup - \ntopspace) {\underline{\textbf{Setup}}};
+
+\node[align=left] at  (\xsetup + 3.2 ,\topsetup - \ntopspace) 
+	{Sample $\vec{t}=(t_1, \dots,
+    t_{\ell})$};
+\node[align=left] at  (\xsetup + 8 ,\topsetup - \ntopspace)  
+	{compute $\quad h_i = g_p^{t_i}\;$ for $i=1,\dots , \ell$};
+\node[align=left] at  (\xsetup + \wsetup/2 ,\topsetup - \ntopspace - \nwspace)  
+	{$\msk = \vec{t}\;$ and $\;\mpk = (h_1,\dots, h_{\ell})$}; 
+}
+
+% Now on fourth frame we present the Encrypt algorithm
+% Setup goes to normal color
+
+
+\onslide<2->{
+% Setup 
+ \draw[rounded corners=5pt]
+  (\xsetup,\ysetup) rectangle ++(\wsetup,\hsetup);
+
+\node[align=left] at  (\xenc + 0.45,\topenc - 0.25) {\underline{\textbf{Enc}}};
+\node[align=left] at  (\xenc + 3.8,\topenc - 0.25) 
+	{
+    \textbf{Plaintext:} $\vec{y} = (y_1,\dots, y_{\ell}) \in (\Zp)^{\ell}$};
+\node[align=left] at  (\xenc + 5.4,\topenc - 1.2) 
+	{
+    \textbf{Sample randomness} $r$\\
+    \textbf{Ciphertext:}\\
+    \hspace{2cm}$\vec{C} = (C_0=g_p^r, C_1=f^{y_1}\cdot h_1^r, \dots , C_{\ell}=f^{y_{\ell}}\cdot h_{\ell}^r)$};
+}
+
+
+
+% Fifth frame: present the KeyDer algorithm
+% Setup, Encrypt: normal color
+
+\onslide<3->{
+% Encryption white
+ \draw[rounded corners=5pt]
+  (\xenc,\yenc) rectangle ++(\wenc,\henc);
+
+\node[align=left] at  (\xKd + 0.8 ,\topKd - 0.3) {\underline{\textbf{KeyDer}}};
+\node[align=left] at  (\xKd + 4.2 ,\topKd -0.5)
+	{
+	\textbf{Input:} $\vec{x}= (x_1,\dots, x_{\ell}) \in (\Zp)^{\ell}$\\
+	\textbf{Output key:} $\skx = \langle\vec{t},\vec{x} \rangle$
+    };
+}
+
+
+% 10+ frame: present the Decrypt algorithm
+% Setup, Encrypt, KeyDer: normal color
+
+\onslide<4->{
+% Key derivation
+ \draw[rounded corners=5pt]
+  (\xKd,\yKd) rectangle ++(\wKd,\hKd);
+  
+% Decryption
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xdec,\ydec) rectangle ++(\wdec,\hdec);
+
+\node[align=left] at  (\xdec + 0.45 ,\topdec - 0.35) {\underline{\textbf{Dec}}};
+
+
+
+			\node[align=left] (input) at  
+			(\xdec + 2.3,\topdec - \ntopspace) 
+			{\textbf{From $\vec{C}, \vec{x}$ and $\skx$ :}};
+
+
+\only<5->{
+			\node[align=left] (input) at  
+			(\xdec + 4.5 ,\topdec - \ntopspace) 
+			{$\;\prod_{i=1}^\ell C_i^{{x}_i}$};
+}
+
+\only<6>{
+			\node[align=left] (input) at  
+			(\xdec + 6.32 ,\topdec - \ntopspace-0.05) 
+			{$=\prod%_{i=1}^\ell 
+            (f^{\;y_i} \cdot h_i^{r})^{x_i}$};
+}  
+
+\only<7>{
+			\node[align=left] (input) at  
+			(\xdec + 6.57 ,\topdec - \ntopspace) 
+			{$=f^{\;\sum y_i x_i}\cdot g_p^{r\cdot \sum t_i x_i}$};
+}
+
+\only<8->{
+			\node[align=left] (input) at  
+			(\xdec + 6.4 ,\topdec - \ntopspace) 
+			{$=f^{\;\langle \vec{y}, \vec{x} \rangle}
+            \cdot g_p^{r\cdot \langle \vec{t}, \vec{x} \rangle}$};
+}
+
+\only<9->{
+			\node[align=left] (input) at  
+            (\xdec + 8.9 ,\topdec - \ntopspace) 
+			{\textbf{and} $\quad C_0^{\skx} =$};
+
+			\node[align=left] (input) at  
+            (\xdec + 10.4 ,\topdec - \ntopspace)
+			{$g_p^{r \cdot\langle \vec{t},\vec{x} \rangle}$};
+}
+
+\only<10->{
+			\node[align=left] at  (\xdec + 1.8 ,\topdec - \ntopspace - 0.7) 
+            {\textbf{Such that: }};
+            
+            \node[align=left] at (\xdec + 5, \topdec - \ntopspace - 1) 
+            {$\prod_{i=1}^\ell C_i^{{x}_i} / C_0^{\skx} 
+            \; = f^{\langle \vec{x}, \vec{y} \rangle}$};
+
+\draw[-triangle 60, mDarkBrown] (\xdec + 6.8, \topdec - \ntopspace - 1) -- ++(1,0) 
+	node [midway,above] {$\DL$};
+
+%            \node[align=left] at (\xdec + 5.93, \topdec - \ntopspace - 1) 
+%            {$\DL(\prod_{i=1}^\ell C_i^{{x}_i} / C_0^{\skx})
+%            = \langle \vec{x}, \vec{y} \rangle$ mod $p$};
+}
+
+            \node[align=left] at (\xdec + 9, \topdec - \ntopspace - 1) 
+            {$\langle \vec{x}, \vec{y} \rangle$ mod $p$};
+
+}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+

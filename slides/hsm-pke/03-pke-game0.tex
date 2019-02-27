@@ -1,0 +1,77 @@
+\begin{frame}{Game 0: the original security experiment}
+\begin{figure}
+\begin{tikzpicture}
+
+\def\xAdv{0}
+\def\yAdv{1.5}
+\def\wAdv{1.5}
+\def\hAdv{6}
+\def\topAdv{\yAdv+\hAdv}
+
+\def\xChal{3}
+\def\yChal{1.5}
+\def\wChal{5.8}
+\def\hChal{6}
+\def\topChal{\yChal+\hChal}
+
+% Adversary box
+\draw[rounded corners=10pt]
+  (\xAdv,\yAdv) rectangle ++(\wAdv,\hAdv);
+
+\node[align=left] at (\xAdv + 0.5,\topAdv - 0.3) {\textsf{Adv}};
+
+%%%%%%%%%%%%%%%%%%
+% Challenger box %
+%%%%%%%%%%%%%%%%%%
+
+\draw[rounded corners=10pt, fill=mDarkTeal, mDarkTeal]
+  (\xChal, \yChal) rectangle ++(\wChal, \hChal);
+\node[align=left] at (\xChal + 1,\topChal - 0.3)
+ 	{\textbf{\textcolor{mLightBrown}{\textsf{Challenger}}}};
+
+% Setup
+\node[align=left] (setup) at (\xChal + 5,\topChal -1.25)
+	{\textbf{\textcolor{black!2}{$\Setup$}}};
+ 
+\draw[-triangle 60, black!2] (setup) -- ++(-1.5,0);
+ 
+\node[align=left] at (\xChal + 1.5,\topChal -1) 
+  	{\textbf{\textcolor{black!2}{$\sk = t \hookleftarrow \D_p$}}}; 
+\node[align=left] at (\xChal + 1.5,\topChal -1.5)
+ 	{\textbf{\textcolor{amaranth}{$\pk = h = g_p^t$}}}; 
+
+% Sample bit
+\node[align=left] at (\xChal + 1.45,\topChal - 3)
+ 	{\textbf{\textcolor{black!2}{$b^* \rand \bit$}}}; 
+    
+% Encryption
+\node[align=left] at (\xChal + 1.2,\topChal - 3.6)
+ 	{\textbf{\textcolor{black!2}{$r\hookleftarrow \mathcal{D}_p$}}}; 
+
+\node[align=left] at (\xChal + 2.6,\topChal - 4.6)
+ 	{\textcolor{amaranth}{$(C_0, C_1)$}\textcolor{black!2}{$= (g_p^r, C_1=f^{m_{b^*}}\cdot h^r)$}};
+
+% Output
+\node[align=left] at (\xChal + \wChal/2,\yChal + 0.3)
+ 	{\textbf{\textcolor{black!2}{Output $(b=b^*)$}}}; 
+
+% Arrows between Challenger and Adv
+\draw[-triangle 60, amaranth] (\xChal,\topChal - 1.25) -- ++(-1.5,0) 
+	node [midway,above] {$\pk$};
+   
+\draw[-triangle 60, mDarkTeal] (\xChal-1.5,\topChal - 3) -- ++(1.5,0) 
+	node [midway,above] {$m_0, m_1$};
+   
+\draw[-triangle 60, amaranth] (\xChal,\topChal - 4.6) -- ++(-1.5,0) 
+	node [midway,above] {$(C_0, C_1)$};
+   
+\draw[-triangle 60, mDarkTeal] (\xChal-1.5,\topChal - 5.5) -- ++(1.5,0) 
+	node [midway,above] {$b$};
+   
+
+\end{tikzpicture}
+\end{figure}
+\begin{center}
+\large Game 0 is the original security experiment.
+\end{center} 
+\end{frame}

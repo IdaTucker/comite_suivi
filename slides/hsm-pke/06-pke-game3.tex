@@ -1,0 +1,96 @@
+\begin{frame}{Game 3: compute $C_0\in G\backslash G^p$}
+\begin{figure}
+\begin{tikzpicture}
+
+\def\xAdv{0}
+\def\yAdv{1.5}
+\def\wAdv{1.5}
+\def\hAdv{6}
+\def\topAdv{\yAdv+\hAdv}
+
+\def\xChal{3}
+\def\yChal{1.5}
+\def\wChal{5.8}
+\def\hChal{6}
+\def\topChal{\yChal+\hChal}
+
+% Adversary box
+\draw[rounded corners=10pt]
+  (\xAdv,\yAdv) rectangle ++(\wAdv,\hAdv);
+
+\node[align=left] at (\xAdv + 0.5,\topAdv - 0.3) {\textsf{Adv}};
+
+%%%%%%%%%%%%%%%%%%
+% Challenger box %
+%%%%%%%%%%%%%%%%%%
+
+\draw[rounded corners=10pt, fill=mDarkTeal, mDarkTeal]
+  (\xChal, \yChal) rectangle ++(\wChal, \hChal);
+\node[align=left] at (\xChal + 1,\topChal - 0.3)
+ 	{\textbf{\textcolor{mLightBrown}{\textsf{Challenger}}}};
+
+ 
+\node[align=left] at (\xChal + 1.5,\topChal -1) 
+  	{\textbf{\textcolor{black!2}{$\sk = t \hookleftarrow \D$}}}; 
+\node[align=left] at (\xChal + 1.5,\topChal -1.5)
+ 	{\textbf{\textcolor{amaranth}{$\pk = h = g_p^t$}}}; 
+
+\onslide<2->{
+\draw[-, amaranth] (\xChal + 2.2,\topChal -1.8) -- ++(0,-0.3);
+\draw[-triangle 60, amaranth] (\xChal + 2.2,\topChal -2.1) -- ++(1,0) 
+	node [right, amaranth] {fixes $t\mod s$};
+}
+
+% Sample bit
+\node[align=left] at (\xChal + 1.45,\topChal - 2.9)
+ 	{\textbf{\textcolor{black!2}{$b^* \rand \bit$}}}; 
+    
+% Encryption
+\node[align=left] at (\xChal + 1.2,\topChal - 3.5)
+ 	{\textbf{\textcolor{black!2}{$r\hookleftarrow \mathcal{D}_p$}}}; 
+\node[align=left] at (\xChal + 3,\topChal - 3.5)
+ 	{\textbf{\textcolor{mLightBrown}{ and $u \hookleftarrow \Zp$}}}; 
+
+\onslide<1-3>{
+\node[align=left] at (\xChal + 2.6,\topChal - 4.6)
+ 	{\textcolor{amaranth}{$(C_0, C_1)$} \textcolor{black!2}{$= ( $} \textcolor{mLightBrown}{$g_p^r\cdot f^u, $} \textcolor{black!2}{$f^{m_{b^*}}\cdot C_0^t)$}};
+}
+\onslide<3->{
+\draw[-, amaranth] (\xChal + 0.7,\topChal -4.3) -- ++(0,0.2);
+\draw[-triangle 60, amaranth] (\xChal + 0.7,\topChal -4.1) -- ++(0.5,0) 
+	node [right, amaranth] {fixes $r\mod s$ and $u\mod p$};
+}
+
+\onslide<4->{
+\node[align=left] at (\xChal + 2.8,\topChal - 4.6)
+ 	{\textcolor{amaranth}{$(C_0, C_1)$}\textcolor{black!2}{$= ($} \textcolor{mLightBrown}{$g_p^r\cdot f^u, $} \textcolor{black!2}{$f^{m_{b^*}+u\cdot t}\cdot h^{r})$}};
+	
+\draw[-, amaranth] (\xChal + 1.2,\topChal -4.9) -- ++(0,-0.2);
+\draw[-triangle 60, amaranth] (\xChal + 1.2,\topChal -5.1) -- ++(0.4,0) 
+	node [right, amaranth] {reveals $m_{b^*} + u \cdot t\mod p$};
+}
+
+
+% Output
+\node[align=left] at (\xChal + \wChal/2,\yChal + 0.3)
+ 	{\textbf{\textcolor{black!2}{Output $(b=b^*)$}}}; 
+
+% Arrows between Challenger and Adv
+\draw[-triangle 60, amaranth] (\xChal,\topChal - 1.25) -- ++(-1.5,0) 
+	node [midway,above] {$\pk$};
+   
+\draw[-triangle 60, mDarkTeal] (\xChal-1.5,\topChal - 3) -- ++(1.5,0) 
+	node [midway,above] {$m_0, m_1$};
+   
+\draw[-triangle 60, amaranth] (\xChal,\topChal - 4.6) -- ++(-1.5,0) 
+	node [midway,above] {$(C_0, C_1)$};
+   
+\draw[-triangle 60, mDarkTeal] (\xChal-1.5,\topChal - 5.5) -- ++(1.5,0) 
+	node [midway,above] {$b$};
+   
+\end{tikzpicture}
+\end{figure}
+\begin{center}
+\large Games $2$ and $3$ are undistinguishable to $\A$ \\under the \textcolor{mLightBrown}{$\HSM$ assumption}.
+\end{center} 
+\end{frame}

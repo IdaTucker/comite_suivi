@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Previous work}
+\begin{figure}[H]
+\begin{tikzpicture}
+% Variables
+% Context x,y coordinates; width and height
+\def\xtime{0}
+\def\ytime{0}
+\def\wtime{9}
+\def\htime{0.5}
+\def\toptime{\ytime+\htime}
+
+% width of an event in time
+\def\wevent{0.05}
+
+% PKC 2015 x,y coordinates; width and height
+\def\pkcfifteen{0}
+
+% Crypto 2016 x coordinate
+\def\crypto16{2.3}
+
+% iacr 2016 x coordinate
+\def\iacr{4.3}
+
+% pkc 2017 x coordinate
+\def\pkcseventeen{6.1}
+
+% asiacrypt 2018 x coordinate
+\def\asiacrypt{\wtime - \wevent}
+
+% Timeline
+\draw[fill=mLightBrown, mLightBrown]
+	(\xtime,\ytime) rectangle ++(\wtime,\htime);
+
+% pkc2015
+ \draw[fill=mDarkTeal, mDarkTeal] (\pkcfifteen,\ytime) rectangle ++(\wevent,\htime);
+ \node[align=center] (pkc15) at  (\pkcfifteen,\ytime + 1) 
+	{PKC 2015};
+  \node[align=center] (pkc15) at  (\pkcfifteen,\ytime - 1) 
+	{\small{\cite{PKC:ABDP15}}\\
+    \scriptsize First IPFE schemes,\\
+	\scriptsize from $\LWE$ and $\DDH$,\\
+    \scriptsize only selectively secure.};
+ 
+\onslide<1->{
+% crypto 16
+\draw[fill=mDarkTeal, mDarkTeal] (\crypto16,\ytime) rectangle ++(\wevent,\htime);
+ \node[align=center] (crypto16) at  (\crypto16,\ytime + 1) 
+	{Crypto 2016};
+  \node[align=center] (crypto16) at (\crypto16,\ytime - 1) 
+	{\small{\cite{C:AgrLibSte16}}\\
+    \scriptsize Full security,\\
+	\scriptsize from $\LWE$,\\
+    \scriptsize $\DDH$ and $\DCR$.};    
+}
+
+\onslide<1->{
+% iacr 16
+\draw[fill=mDarkTeal, mDarkTeal] (\iacr,\ytime) rectangle ++(\wevent,\htime);
+ \node[align=center] (iacr) at  (\iacr,\ytime + 1) 
+	{2016}; 
+   \node[align=center] (iacr) at (\iacr,\ytime - 1) 
+	{\small{\cite{EPRINT:ABDP16}}\\
+	\\
+	\\};    	
+	
+}
+
+\onslide<1->{
+% pkc 17
+\draw[fill=mDarkTeal, mDarkTeal] (\pkcseventeen,\ytime) rectangle ++(\wevent,\htime);
+ \node[align=center] (pkc17) at  (\pkcseventeen,\ytime + 1) 
+	{PKC 2017};
+  \node[align=center] (pkc17) at (\pkcseventeen,\ytime - 1) 
+	{\small{\cite{PKC:BenBouLip17}}\\
+    \scriptsize Generic\\
+	\scriptsize constructions\\
+    \scriptsize from HPS.};
+}
+
+\onslide<1->{
+
+\draw [decorate,decoration={brace,amplitude=4pt},xshift=0cm,yshift=0.5pt]
+       (\pkcfifteen, \ytime+1.5) -- (\pkcseventeen, \ytime + 1.5) 
+       node [midway,above,yshift=1.2cm] {\small Schemes mod $p$ do not recover}
+       node [midway,above,yshift=0.7cm] {\small large inner products} 
+       node [midway,above,yshift=0.2cm] {\small or are inefficient.}; 
+}
+
+\onslide<2->{
+% asiacrypt 2018
+\draw[fill=mDarkTeal, mDarkTeal] (\asiacrypt,\ytime) rectangle ++(\wevent,\htime);
+ \node[align=center] (asiacrypt) at  (\asiacrypt,\ytime + 1) 
+	{Asiacrypt 2018};
+  \node[align=center] (asiacrypt) at (\asiacrypt,\ytime - 1.3) 
+	{\scalebox{0.9}{\cite{AC:CasLagTuc18}}\\
+    \scalebox{0.8}{IPFE mod $p$}\\
+    \scalebox{0.8}{adaptive security}\\
+	\scalebox{0.8}{no restriction on size}\\
+    \scalebox{0.8}{and efficient!}};
+}
+
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+
+
+\note{
+IPFE tends to use underlying homomorphic encryption schemes due to linearity property of inner product.
+
+A part from the LWE based schemes of [ALS16], all IPFE schemes to date encrypt the message in the exponent of a group $G$ so as to benefit of the linear operations one can perform in the exponents by multiplying group elements.
+
+Problem: decryption is only possible if the resulting inner product is small.
+
+Note: ALS resolved this issue with an LWE based scheme, but their scheme for computing inner products modulo a prime $p$ is very inefficient (especially for vectors with many coordinates).
+
+This work: We thereby present the first IPFE schemes which are both efficient and recover $\langle x, y \rangle \mod p$ whatever its size.
+}

@@ -1,0 +1,18 @@
+\begin{frame}{Framework (sketch) \cite{RSA:CasLag15}}
+\begin{block}{Group with an easy discrete logarithm ($\DL$) subgroup}
+
+\begin{itemize}
+\item \textcolor{mLightBrown}{$G=\langle g\rangle$} cyclic group of order $p\cdot s$ such that \textcolor{mLightBrown}{$\gcd(p,s)=1$}.
+\item \textcolor{mLightBrown}{$p$} large prime
+\item \textcolor{mLightBrown}{$F=\langle f \rangle$} subgroup of $G$ 
+of order $p$.
+\item \textcolor{mLightBrown}{$G^p= \langle g_p\rangle$} $=\{x^p, x \in G\}$ subgroup of $G$
+of order $s$,$$G = F \times G^p.$$
+\vspace{-0.3cm}
+\item \textcolor{mLightBrown}{$\DL$} is \textbf{easy} in $F$\hspace{1cm} ($\DL$: given $f$ and $h=f^{\textcolor{amaranth}{x}}$, find $\textcolor{amaranth}{x}\in\Zp$)
+\end{itemize}
+%   
+\end{block}
+\end{frame}
+\note{Framework \cite{RSA:CasLag15}.
+We use the framework introduced by Castagnos and Laguillaumie at CTRSA 2015 which supposes the existence of a DDH group with an easy DL subgroup: a cyclic group $G = \langle g \rangle$ where the DDH assumption holds together with a subgroup $F = \langle f \rangle$ of G where the discrete logarithm problem is easy.}

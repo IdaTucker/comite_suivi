@@ -1,0 +1,97 @@
+\begin{frame}{Functional Encryption \cite{TCC:BonSahWat11}}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xalice{0}
+\def\yalice{7}
+\def\walice{1.5}
+\def\halice{0.6}
+\def\topalice{\yalice+\halice}
+
+% bob x,y coordinates; width and height
+\def\xbob{8}
+\def\ybob{7}
+\def\wbob{1.5}
+\def\hbob{.6}
+\def\topbob{\ybob+\hbob}
+
+% authority x,y coordinates; width and height
+\def\xauth{4}
+\def\yauth{7}
+\def\wauth{1.5}
+\def\hauth{.6}
+\def\topauth{\yauth+\hauth}
+
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xbob,\ybob) rectangle ++(\wbob,\hbob);
+  \node[align=left] at  (\xbob + \wbob/2 ,\ybob+\hbob/2) 
+	{Bob};
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-\hbob/2) 
+	{Function $F$};
+	
+\draw[rounded corners=5pt, mDarkBrown, fill=mDarkBrown]
+  (\xauth,\yauth) rectangle ++(\wauth,\hauth);
+  \node[align=left, black!2] at  (\xauth + \wauth/2 ,\yauth+\hauth/2) 
+	{Auth.};
+\node[align=left, mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-\hauth/2) 
+	{\textsf{Setup}};	
+	\draw[-triangle 60, mDarkBrown] (\xauth + \wauth/2,\yauth-0.5) -- ++(0,-0.4);
+\node[align=left, mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-1.1) 
+	{$(\mpk, \msk)$};
+  
+ \draw[rounded corners=5pt]
+  (\xalice,\yalice) rectangle ++(\walice,\halice);
+\node[align=left] at  (\xalice + \walice/2 ,\yalice+\halice/2) 
+	{Alice};
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-\halice/2) 
+	{m};	
+	
+\onslide<2>{
+\draw[-triangle 60, mDarkBrown] (\xauth-0.5,\yauth-1.3) -- ++(-1,-0.25) 
+	node [midway,above] {$\mpk$};
+}
+
+\onslide<2->{
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-1.6) 
+	{$C =$ \textsf{Enc} $($\textcolor{mDarkBrown}{mpk}$, m)$};
+}
+
+\onslide<3>{
+\draw[-triangle 60, mLightBrown] (\xbob-0.5,\ybob-0.75) -- ++(-1,-0.75) 
+	node [midway,above] {$F$};
+}
+\onslide<3->{
+\node[align=left,mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-1.7) 
+	{$\skf =$\textsf{KeyDer}$(\msk, $\textcolor{mLightBrown}{F}$)$};
+}
+\onslide<3>{	
+\draw[-triangle 60, mDarkBrown] (\xauth+2.6,\yauth-1.7) -- ++(1,0) 
+	node [midway,below] {$\skf$};
+}
+
+\onslide<3->{
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-1.7) 
+	{$\skf$};
+}
+
+
+\onslide<4>{
+\draw[-] (\xalice+\walice/2,\yalice - 2) -- ++(0,-1);
+\draw[-triangle 60] (\xalice+\walice/2,\yalice - 3) -- ++(6.3,0) 
+	node [midway,above] {$C$};
+}
+
+\onslide<4->{
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-3) 
+	{$F(m) =$ \textsf{Dec}$(\skf, $\textcolor{mDarkTeal}{C}\textcolor{mLightBrown}{$)$}};
+}
+
+\onslide<4->{
+\node[align=left] at  (4.5 ,\ybob-4.5) 
+	{\large Bob \textbf{only learns} $F(m)$.};
+}
+\end{tikzpicture}
+\end{figure}
+\end{frame}

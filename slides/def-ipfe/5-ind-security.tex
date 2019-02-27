@@ -1,0 +1,95 @@
+\begin{frame}{FE Security -- Indistinguishability under CPA}
+\begin{figure}
+\begin{tikzpicture}
+
+\def\ybotom{1}
+\def\height{6}
+
+% Adversary box
+\draw[rounded corners=10pt]
+  (0,\ybotom) rectangle ++(2,\height);
+
+% Challenger box  
+   \draw[rounded corners=10pt, fill=mDarkTeal, mDarkTeal]
+  (3,\ybotom) rectangle ++(5.8,\height+0.5);
+% FE scheme box  
+    \draw[rounded corners=10pt, mLightBrown, fill=mDarkTeal]
+  (5.5,\ybotom+1.6) rectangle ++(3.2,\height-1.6);
+    
+  
+ \node[align=left] at (4,7.2) {\textbf{\textcolor{mLightBrown}{\textsf{Challenger}}}};
+ \node[align=left] at (6.5,6.7) {\textcolor{mLightBrown}{\textsf{FE Scheme}}}; 
+ \node[align=left] at (0.5,6.7) {\textsf{Adv}};
+
+% Algorithms of the FE scheme 
+  \node[align=left] at (6.3,6.2) {\textbf{\textcolor{black!2}{$\Setup$}}};
+  \node[align=left] at (7.2,3) {\textbf{\textcolor{black!2}{$\Enc(\mpk, M_{b^*})$}}};
+  
+ % Arrows between FE and Challenger
+ \draw[-triangle 60, white] (5.7,6.2) -- (5,6.2);
+ \draw[-triangle 60, black!2] (5.7,3) -- (5,3);
+ 
+ % Otputs of FE scheme
+  \node[align=left] at (4.2,6.2) {\textbf{\textcolor{black!2}{$\mpk, \msk$}}}; 
+  \node[align=left] at (4.2,3) {\textbf{\textcolor{black!2}{$C^*$}}}; 
+  
+  % Arrows between Challenger and Adv
+   \draw[-triangle 60, mDarkTeal] (3,5.5) -- (1.5,5.5) node [midway,above ] {$\mpk$};
+   \draw[-triangle 60, mDarkTeal] (1.5,4) -- (3,4) node [midway,above ] {$M_0, M_1$};
+   \draw[-triangle 60, mDarkTeal] (3,2.8) -- (1.5,2.8) node [midway,above ] {$C^*$};
+     \draw[-triangle 60, mDarkTeal] (1.5,1.6) -- (3,1.6) node [midway,above ] {\textbf{\textcolor{mDarkTeal}{$b$}}}; 
+  
+   
+  % Challenger steps
+  \node[align=left] at (4.2,3.8) {\textbf{\textcolor{black!2}{$b^* \rand \bit$}}}; 
+          
+          
+ 
+   \onslide<1>{ 
+  
+  % Final test 
+    \draw[rounded corners=5pt, fill=mLightBrown, mLightBrown]
+  (4,\ybotom+0.3) rectangle ++(3.8,0.7);
+  \node[align=left] at (5.9,1.6) {\textbf{\textcolor{mDarkTeal}{$b \; = \; b^*$}}}; 
+  
+  }
+
+
+\onslide<2->{
+% Key derivation oracle
+\draw[rounded corners=10pt, fill=mLightBrown, mLightBrown]
+  (-2.5,\ybotom) rectangle ++(2,\height);
+  
+\node[align=left] at (-1.5,6.7) {\textsf{KeyDer}}; 
+  \node[align=left] at (-1.5,6.4) {\textsf{Oracle}}; 
+   % Arrows between Adv and FE Scheme
+   \draw[-triangle 60, mDarkTeal] (1,5) -- (-1,5) node [midway,above ] {$F_1, F_2 \dots$};
+   \draw[-triangle 60, mDarkTeal] (-1,4.4) -- (1,4.4) node [midway,above ] {$\textsf{sk}_{F_1}, \textsf{sk}_{F_2} \dots$};
+   
+   \draw[-triangle 60, mDarkTeal] (1,2.5) -- (-1,2.5) node [midway,above ] {$F_q, F_{q+1} \dots$};
+   \draw[-triangle 60, mDarkTeal] (-1,1.9) -- (1,1.9) node [midway,above ] {$\textsf{sk}_{F_q}, \textsf{sk}_{F_{q+1}} \dots$};   
+}
+
+
+  
+   \onslide<2>{ 
+  
+  % Final test 
+    \draw[rounded corners=5pt, fill=mLightBrown, mLightBrown]
+  (4,\ybotom+0.1) rectangle ++(3.8,1.4);
+  \node[align=left] at (5.9,\ybotom+1.1) {\textbf{\textcolor{mDarkTeal}{$\forall i, \quad F_i(M_0) = F_i(M_1)$}}};
+    \node[align=left] at (5.9,\ybotom+0.7) {\textbf{\textcolor{mDarkTeal}{and}}};
+  \node[align=left] at (5.9,\ybotom+0.3) {\textbf{\textcolor{mDarkTeal}{$b \; = \; b^*$}}}; 
+  
+  }  
+  
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+
+\note{
+Indistinguishability (IND)
+
+Adversary given access to $(\mathsf{sk}_{F_1}, \mathsf{sk}_{F_2}, \dots,  \mathsf{sk}_{F_q})$, cannot distinguish between $\Enc(\mpk, M_0)$ and $\Enc(\mpk, M_1)$ where $F_i(M_0) = F_i(M_1)$ for all i.
+
+}

@@ -1,0 +1,164 @@
+﻿\begin{frame}{Fine Grained Access to Info with Traditional Encryption}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xEmployees{8}
+
+\def\yEmployeeProfile{8}
+\def\yOfficeWorker{6}
+\def\yTelephoneOperator{4}
+\def\yManWithSunglasses{2}
+
+
+% Encryptor x,y coordinates; width and height
+\def\xEncryptor{0}
+\def\yEncryptor{5}
+
+% Other
+\def\xMiddle{4}
+
+
+\node[inner sep=0pt] at (\xEmployees ,\yEmployeeProfile)
+ {\includegraphics[width=0.1\textwidth]{img/employee-profile.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yOfficeWorker)
+ {\includegraphics[width=0.1\textwidth]{img/office-worker-outline.png}};
+
+\node[inner sep=0pt] at (\xEmployees ,\yTelephoneOperator)
+ {\includegraphics[width=0.1\textwidth]{img/telephone-operator.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yManWithSunglasses)
+ {\includegraphics[width=0.1\textwidth]{img/man-with-sunglasses.png}};
+
+\node[inner sep=0pt] at (\xEncryptor ,\yEncryptor)
+ {\includegraphics[width=0.1\textwidth]{img/document.png}};
+
+\onslide<1,2,3>
+{
+\node[align=center, yellow] at (\xEmployees ,\yEmployeeProfile-0.8) {$\pk_1,\sk_1$}; 
+\node[align=center, blue] at (\xEmployees ,\yOfficeWorker-0.8) {$\pk_2,\sk_2$}; 
+\node[align=center, purple] at (\xEmployees ,\yTelephoneOperator-0.8) {$\pk_3,\sk_3$}; 
+\node[align=center, amaranth] at (\xEmployees ,\yManWithSunglasses-0.8) {$\pk_4,\sk_4$}; 
+\node[align=center, black] at (\xEncryptor ,\yEncryptor-0.8) {$m$}; 
+}
+
+\onslide<2>{
+\draw[-triangle 60, yellow, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor-1.5, \yEncryptor-2);
+\draw[-triangle 60, blue, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor-0.5, \yEncryptor-2);
+\draw[-triangle 60, purple, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor+0.5, \yEncryptor-2);
+\draw[-triangle 60, amaranth, thick] (\xEncryptor ,\yEncryptor-1) to (\xEncryptor+1.5, \yEncryptor-2);
+
+\node[align=center, yellow] at (\xEncryptor-1.5, \yEncryptor-2.4) {$m_1$}; 
+\node[align=center, blue] at (\xEncryptor-0.5, \yEncryptor-2.4) {$m_2$}; 
+\node[align=center, purple] at (\xEncryptor+0.5, \yEncryptor-2.4) {$m_3$}; 
+\node[align=center, amaranth] at (\xEncryptor+1.5, \yEncryptor-2.4) {$m_4$}; 
+}
+
+\onslide<3>
+{
+\draw[-triangle 60, yellow, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle, \yEmployeeProfile-0.2);
+\draw[-triangle 60, blue, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yOfficeWorker);
+\draw[-triangle 60, purple, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yTelephoneOperator);
+\draw[-triangle 60, amaranth, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yManWithSunglasses);
+
+\node[align=center, yellow] at (\xEncryptor ,\yEncryptor-1.2) {$C_1 =\Enc (\pk_1, m_1)$}; 
+\node[align=center, blue] at (\xEncryptor ,\yEncryptor-1.6) {$C_2 =\Enc (\pk_{2}, m_2)$}; 
+\node[align=center, purple] at (\xEncryptor ,\yEncryptor-2) {$C_3 =\Enc (\pk_{3}, m_3)$}; 
+\node[align=center, amaranth] at (\xEncryptor ,\yEncryptor-2.4) {$C_4 =\Enc (\pk_{4}, m_4)$}; 
+\node[align=center, amaranth] at (\xEncryptor ,\yEncryptor-2.8) {$\textcolor{blue}{C_5} =\Enc (\pk_{4}, \textcolor{blue}{m_2})$}; 
+
+
+\node[align=center,yellow] at (\xMiddle +1 ,\yEmployeeProfile-0.2) {$C_1$}; 
+\node[align=center,blue] at (\xMiddle +1,\yOfficeWorker) {$C_2 $}; 
+\node[align=center,purple] at (\xMiddle +1,\yTelephoneOperator) {$C_3$}; 
+\node[align=center, amaranth] at (\xMiddle+1 ,\yManWithSunglasses) {$C_4,\textcolor{blue}{C_5}$}; 
+}
+\end{tikzpicture}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Ideal Fine Grained Access to Information}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xEmployees{8}
+
+\def\yEmployeeProfile{8}
+\def\yOfficeWorker{6}
+\def\yTelephoneOperator{4}
+\def\yManWithSunglasses{2}
+
+
+% Encryptor x,y coordinates; width and height
+\def\xEncryptor{0}
+\def\yEncryptor{5}
+
+% Other
+\def\xMiddle{4}
+
+
+\node[inner sep=0pt] at (\xEmployees ,\yEmployeeProfile)
+ {\includegraphics[width=0.1\textwidth]{img/employee-profile.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yOfficeWorker)
+ {\includegraphics[width=0.1\textwidth]{img/office-worker-outline.png}};
+
+\node[inner sep=0pt] at (\xEmployees ,\yTelephoneOperator)
+ {\includegraphics[width=0.1\textwidth]{img/telephone-operator.png}};
+ 
+\node[inner sep=0pt] at (\xEmployees ,\yManWithSunglasses)
+ {\includegraphics[width=0.1\textwidth]{img/man-with-sunglasses.png}};
+
+\node[inner sep=0pt] at (\xEncryptor ,\yEncryptor)
+ {\includegraphics[width=0.1\textwidth]{img/document.png}};
+
+
+\node[align=center, yellow] at (\xEmployees ,\yEmployeeProfile-0.8) {$\sk_1$}; 
+\node[align=center, blue] at (\xEmployees ,\yOfficeWorker-0.8) {$\sk_2$}; 
+\node[align=center, purple] at (\xEmployees ,\yTelephoneOperator-0.8) {$\sk_3$}; 
+\node[align=center, amaranth] at (\xEmployees ,\yManWithSunglasses-0.8) {$\sk_4$, \textcolor{blue}{$\sk_2$}}; 
+\node[align=center, black] at (\xEncryptor ,\yEncryptor-0.8) {$\pk, m$}; 
+
+
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle, \yEmployeeProfile-0.2);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yOfficeWorker);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yTelephoneOperator);
+\draw[-triangle 60, black, thick] (\xEncryptor+1, \yEncryptor) to (\xMiddle,\yManWithSunglasses);
+
+\node[align=center, black] at (\xEncryptor ,\yEncryptor-1.2) {$C =\Enc (\pk, m)$}; 
+
+\node[align=center,yellow] at (\xMiddle +2 ,\yEmployeeProfile-0.2) {$m_1=\Dec(\sk_1, C)$}; 
+\node[align=center,blue] at (\xMiddle +2,\yOfficeWorker) {$m_2=\Dec(\sk_2, C)$}; 
+\node[align=center,purple] at (\xMiddle +2,\yTelephoneOperator) {$m_3=\Dec(\sk_3, C)$}; 
+\node[align=center, amaranth] at (\xMiddle+2 ,\yManWithSunglasses) {$m_4=\Dec(\sk_4, C)$}; 
+\node[align=center,blue] at (\xMiddle +2,\yManWithSunglasses-0.4) {$m_2=\Dec(\sk_2, C)$}; 
+
+\end{tikzpicture}
+\end{figure}
+
+\end{frame}
+
+
+\note{Suppose we want a more fine grained access to info, in a company, $\neq$ employees may be granted $\neq$ access to info, depending on how long they have been working for the company, etc. 
+
+So for a given file $m$, $\neq$ employees will have access to $\neq$ info in $m$.
+
+Say $m_1,m_2,m_3$ and $m_4$ are different parts of the info contained in $m$, and to which the yellow, blue, purple and red employees are respectively granted access. So the yellow employee is allowed to know $m_1$, the blue employee is allowed to know $m_2$ etc.
+
+With traditional enc $\Rightarrow$ each employee must have his own pub and priv key pair,
+\textbf{(click)}
+ and the specific piece of information that a user is granted access to will be encrypted under his public key.
+ 
+ But clearly this yields a lot of encryption keys, a lot of $\neq$ ciphertexts $\Rightarrow$ messy and heavyweight.
+ Since all the info in $m_1,m_2,m_3$ and $m_4$ is actually contained in $m$,
+ what we would like \textbf{(click)} is to have a single public key with which we encrypt the ciphertext, and thus a single ciphertext. But each employee possesses a $\neq$ decryption key which is associated to the part of info he is allowed to get about $m$.
+ 
+ And so everyone gets the same ciphertext $C$, but depending on the secret key an employee owns, decryption recovers a different part of the information in $m$.
+
+}

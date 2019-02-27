@@ -1,0 +1,98 @@
+\renewcommand\useanchorwidth{T}
+\usepackage{xcolor}
+\def\theyearwidth{1.5pt}
+\newlength\yrsfboxrule
+\yrsfboxrule .4\fboxrule
+
+\newcommand\yearwidth[1]{\def\theyearwidth{#1}\ignorespaces}
+
+\newcommand\skipyears[2][white]{%
+  \fboxrule\yrsfboxrule%
+  \fboxsep=-\yrsfboxrule%
+  \fcolorbox{gray}{#1}{\strut\hspace{#2}}%
+  \ignorespaces%
+}
+\newcommand\showyear[2][black]{%
+  \fboxsep=0pt%
+  \stackon{%
+    \colorbox{#1}{\strut\hspace{\theyearwidth}}%
+  }{\sffamily\small#2}%
+  \ignorespaces%
+}
+
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
+
+% Colors
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+
+% Arrows
+\newcommand{\rand}{\xleftarrow{\$}}
+
+% Adversary
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\Adv}{\mathsf{Adv}}
+
+% sets and ensembles
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Zp}{\Z/p\Z}
+\newcommand{\Zs}{\Z/s\Z}
+\newcommand{\bit}{\{0,1\}}
+
+% PKE
+\newcommand{\Kg}{\mathsf{KeyGen}}
+
+% DDH group with easy DL subgroup generator
+\newcommand{\Gen}{\mathsf{Gen}}
+\newcommand{\Solve}{\mathsf{Solve}}
+% Functional encryption algorithms
+\newcommand{\Setup}{\mathsf{Setup}}
+\newcommand{\Kd}{\mathsf{KeyDer}}
+\newcommand{\Enc}{\mathsf{Enc}}
+\newcommand{\Dec}{\mathsf{Dec}}
+% Functional encryption master keys
+\newcommand{\mpk}{\mathsf{mpk}}
+\newcommand{\msk}{\mathsf{msk}}
+\newcommand{\pk}{\mathsf{pk}}
+\newcommand{\sk}{\mathsf{sk}}
+% Functional encryption secret key
+\newcommand{\skf}{\mathsf{sk}_F}
+\newcommand{\skX}{\mathsf{sk}_X}
+\newcommand{\skx}{\mathsf{sk}_{\vec{x}}}
+\newcommand{\sol}{\mathsf{sol}}
+% Assumptions
+\newcommand{\LWE}{\mathsf{LWE}}
+\newcommand{\DDH}{\mathsf{DDH}}
+\newcommand{\DCR}{\mathsf{DCR}}
+\newcommand{\DL}{\mathsf{DL}}
+\newcommand{\HSM}{\mathsf{HSM}}
+\newcommand{\DDHf}{\mathsf{DDH}\mbox{-}\mathsf{f}}
+% Distributions
+\newcommand{\D}{\mathcal{D}}
+
+% Defining colors
+\definecolor{darkjunglegreen}{rgb}{0.1, 0.6, 0.13} 
+\definecolor{themecolor}{rgb}{0.2, 0.7, 0.4} 
+\definecolor{yellow}{rgb}{1,0.8,0}
+\definecolor{red}{rgb}{0.7,0,0.2}
+\definecolor{blue}{rgb}{0.1,0.5,1}
+\definecolor{purple}{rgb}{0.5,0.2,0.9}
+\definecolor{amethyst}{rgb}{0.6, 0.4, 0.8}
+\AtBeginSubsection{\frame{\subsectionpage}}
+
+
+% Variables in algo
+\newcommand{\xbar}{\tilde{\bf{x}}}
+\newcommand{\xbari}{{\tilde{\bf{x}}_i}}
+\newcommand{\zx}{z_{\textbf{x}}}
+\newcommand{\zxi}{z_{\textbf{x}_{i}}}
+\newcommand{\cy}{C_{\vec{y}}}

@@ -1,0 +1,46 @@
+\begin{frame}{Traditional Public Key Encryption (PKE)}
+\begin{itemize}
+\item \textcolor{mLightBrown}{\textbf{$\Kg$($1^\lambda$)}} $\rightarrow$ secret key $\sk$ and a public key $\pk$
+\item \textcolor{mLightBrown}{\textbf{$\Enc$($\pk,m$)}} $\rightarrow$ ciphertext $c$ for $m$ under public key $\pk$
+\item \textcolor{mLightBrown}{\textbf{$\Dec$($\sk,c$)}} $\rightarrow$ message $m$
+\end{itemize}
+Modifying $c \rightsquigarrow c'$ \\
+\hspace{1cm} $\Rightarrow$ impossible to decrypt $c'$.
+\end{frame}
+
+\begin{frame}{Linearly Homomorphic PKE}
+Anyone can publicly modify ciphertexts to manipulate plaintexts
+\begin{itemize}
+\item Let $\alpha, m, m'\in \mathcal{M}$ and $c \gets \Enc(\pk,m)$, $c'\gets \Enc(\pk, m')$
+\item \textcolor{mLightBrown}{\textbf{EvalSum($\pk, c, c'$)}} $\rightarrow$ $c_1$ such that $\Dec(\sk,c_1)=m+m'$
+\item \textcolor{mLightBrown}{\textbf{EvalScal($\pk, c, \alpha$)}} $\rightarrow$ $c_2$ such that $\Dec(\sk,c_2)=\alpha m$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Security PKE}
+\textbf{Security against passive adversaries:}
+\begin{itemize}
+\item CPA security: Oscar can encrypt plaintexts of his choice \\(Chosen Plaintext Attack)
+\end{itemize}
+\onslide<2->{\textbf{Security against \textbf{active} adversaries:}
+\begin{itemize}
+\item CCA security: Oscar wants to decrypt a challenge ciphertext $c$, he can request the decryption of ciphertexts $c'\neq c$ of his choice (Chosen Ciphertext Attack)
+\end{itemize}
+}
+\onslide<3->{\textbf{No CCA security for homomorphic schemes:}
+\begin{itemize}
+\item Oscar computes $c'\gets \Enc(\pk,0)$ and $c_1\gets EvalSum(\pk, c, c')$
+\item Oscar requests the decryption of $c_1$ to get $m$.
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}{Homomorphic Encryption as Building Block}
+\textbf{Paradox of homomorphic encryption:}
+\begin{itemize}
+\item[-] Cannot achieve maximum security expected of PKE
+\onslide<2->{
+\item[+] Homomorphic properties allow to build advanced and complex cryptographic systems
+}
+\end{itemize}
+\end{frame}

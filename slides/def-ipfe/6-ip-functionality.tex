@@ -1,0 +1,68 @@
+\begin{frame}{The inner product functionality}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xalice{0}
+\def\yalice{5}
+\def\walice{1.5}
+\def\halice{0.6}
+\def\topalice{\yalice+\halice}
+
+% bob x,y coordinates; width and height
+\def\xbob{8}
+\def\ybob{5}
+\def\wbob{1.5}
+\def\hbob{.6}
+\def\topbob{\ybob+\hbob}
+
+% authority x,y coordinates; width and height
+\def\xauth{4}
+\def\yauth{7}
+\def\wauth{1.5}
+\def\hauth{.6}
+\def\topauth{\yauth+\hauth}
+
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xbob,\ybob) rectangle ++(\wbob,\hbob);
+  \node[align=left] at  (\xbob + \wbob/2 ,\ybob+\hbob/2) 
+	{Bob};
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-\hbob/2) 
+	{$\vec{x}, \skx$};
+	
+\draw[rounded corners=5pt, mDarkBrown, fill=mDarkBrown]
+  (\xauth,\yauth) rectangle ++(\wauth,\hauth);
+  \node[align=left, black!2] at  (\xauth + \wauth/2 ,\yauth+\hauth/2) 
+	{Auth.};
+\node[align=left, mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-\hauth/2) 
+	{\textsf{Setup}};	
+	\draw[-triangle 60, mDarkBrown] (\xauth + \wauth/2,\yauth-0.5) -- ++(0,-0.4);
+\node[align=left, mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-1.1) 
+	{$(\mpk, \msk)$};
+  
+ \draw[rounded corners=5pt]
+  (\xalice,\yalice) rectangle ++(\walice,\halice);
+\node[align=left] at  (\xalice + \walice/2 ,\yalice+\halice/2) 
+	{Alice};
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-\halice/2) 
+	{$\vec{y}$};	
+	
+
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-0.8) 
+	{$C =$ \textsf{Enc} $($\textcolor{mDarkBrown}{mpk}$, \vec{y})$};
+
+
+\draw[-triangle 60] (\xauth-1.5,\yalice - 0.8) -- ++(4,0) 
+	node [midway,above] {$C$};
+
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-0.8) 
+	{$\langle \vec{x}, \vec{y} \rangle =$ \textsf{Dec}$(\skx, $\textcolor{mDarkTeal}{C}\textcolor{mLightBrown}{$)$}};
+
+\node[align=left] at  (4.5 ,\ybob-2.5) 
+	{\large $F_x : \mathcal{R}^{\ell} \mapsto \mathcal{R}$\\
+	\hspace{.65cm} $y \quad \mapsto \langle \vec{x}, \vec{y} \rangle$};
+
+\end{tikzpicture}
+\end{figure}
+\end{frame}

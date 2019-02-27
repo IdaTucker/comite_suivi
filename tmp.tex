@@ -1,0 +1,199 @@
+%%%%%%%%%%%
+%full version vs short  %
+%%%%%%%%%%%
+\def\full{0}  % version courte
+%\def\full{1} % version longue
+
+\newcommand{\fullversion}[2]{\ifnum\full=1%
+#1
+\else%
+#2%
+\fi}
+
+
+\documentclass[runningheads]{llncs}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\RequirePackage{amsmath}
+\usepackage{mathtools,amssymb}
+\usepackage[titletoc]{appendix}
+\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage{float}
+\usepackage{soul}
+\usepackage{tabularx} 
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{arrows, decorations.markings,positioning, decorations.text}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}
+\usepackage[caption=false]{subfig}
+\usepackage{geometry}
+ \usepackage{dutchcal}
+\usepackage{enumitem}
+\usepackage{yfonts}
+\usepackage{tablefootnote}
+\usepackage[flushleft]{threeparttable} 
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\usepackage{hyperref}
+\usepackage{varwidth}
+\usepackage{pagecolor}
+
+\makeatother
+
+
+\usepackage[utf8]{inputenc}
+
+
+\def\UrlFont{\rmfamily}
+
+\pagestyle{plain}
+
+\begin{document}
+\mainmatter              
+%
+%
+\renewcommand{\contentsname}{Comité de Suivi -- Mars 2019 -- Ida Tucker}
+\tableofcontents
+\clearpage
+
+
+
+
+
+\section{Curriculum Vitae}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\section{Progress Report}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\section{Publications}
+\newpage \phantom{hello}
+\subsection{Asiacrypt 2018 -- Conference version of [CLT18]}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\subsection{Eprint (IACR Archives) -- Full version of [CLT18]}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\section{Pre-Publications}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+\newpage \phantom{hello}
+
+\bibliographystyle{alpha-short}
+\bibliography{../cryptobib/abbrev3,../cryptobib/crypto,other.bib}
+
+%
+\begin{subappendices}
+%
+\renewcommand{\thesection}{\Alph{section}}%
+%
+\end{subappendices}
+%
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

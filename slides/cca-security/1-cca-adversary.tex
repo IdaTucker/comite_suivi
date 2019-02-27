@@ -1,0 +1,44 @@
+\begin{frame}{Active adversaries}
+What can an \textbf{\textcolor{red}{active adversary}} do?
+\begin{itemize}
+\item Everything a passive adversary can do (observe)
+\item Deviate from the protocol (act)
+\item[$\Rightarrow$] Request the decryption of ciphertexts of its choice
+\begin{itemize}
+\item Ciphertexts may not have been obtained from encryption protocol
+\item Malformed ciphertexts could leak information on secret keys!
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Protecting against active adversaries}
+\begin{center}
+Passive attacks $\Rightarrow$ \textcolor{red}{Confidentiality}
+\end{center}
+%\vspace{2cm}
+\begin{center}
+Active attacks $\Rightarrow$ \textcolor{red}{Ciphertext Integrity}
+
+$\rightsquigarrow$ ensures adversary has not deviated from protocol
+
+(no more info than CPA)
+\end{center}
+\end{frame}
+
+\begin{frame}{CCA security from the Cramer Shoup paradigm [CS02]}
+Cramer and Shoup introduce \textbf{Hash Proof Systems} (HPS):
+\begin{itemize}
+\item[-] Useful tool to abstract the properties of a cryptosystem
+\item[-] [CS02] generic construction from HPS to CCA secure encryption
+\item[-] Specific properties of HPS ensure \textbf{confidentiality} and \textbf{integrity}
+\item[-] [BBL17] generic construction from homomorphic HPS to CCA secure IPFE
+\end{itemize}
+\end{frame}
+
+\begin{frame}{HPS in the CL framework}
+\begin{itemize}
+\item We build homomorphic HPS from assumptions in CL framework
+\item We improve [BBL17] by tightening security proof
+\item We build CCA secure PKE and IPFE from CL framework
+\end{itemize}
+\end{frame}

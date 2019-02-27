@@ -1,0 +1,138 @@
+\begin{frame}{Application: Spam filtering for encrypted emails}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Alice x,y coordinates; width and height
+\def\xalice{0}
+\def\yalice{7}
+
+% Spam x,y coordinates; width and height
+\def\xspam{0}
+\def\yspam{3}
+
+% Inbox x,y coordinates; width and height
+\def\xinbox{6}
+\def\yinbox{3}
+
+% Bin x,y coordinates; width and height
+\def\xbin{8}
+\def\ybin{3}
+
+% bob x,y coordinates; width and height
+\def\xbob{3.5}
+\def\ybob{5}
+
+
+% authority x,y coordinates; width and height
+\def\xauth{7}
+\def\yauth{7}
+\def\wauth{1.5}
+\def\hauth{.6}
+
+\onslide<1>{
+\node[cloud, cloud puffs=15.7, cloud ignores aspect, minimum width=3cm, minimum height=1.7cm, align=center, draw, mLightBrown] (cloud) at (\xbob, \ybob) {\textbf{e-mail server} \\ F};
+}
+
+\onslide<1-2>{\draw[rounded corners=5pt, mDarkBrown, fill=mDarkBrown]
+  (\xauth,\yauth) rectangle ++(\wauth,\hauth);
+  \node[align=left, black!2] at  (\xauth + \wauth/2 ,\yauth+\hauth/2) 
+	{Recipient};
+\node[align=left, mDarkBrown] at  (\xauth + \wauth/2 ,\yauth-0.3) 
+	{$\mpk, \msk$};
+\node[align=center, mLightBrown] at (\xbob+1, \ybob -2){
+$F(m) =  1 \;$ if m is spam\\
+        \hspace{0.9cm}$0 \;$ otherwise
+};
+}
+
+\onslide<2>{
+% \draw[-triangle 60, mLightBrown] (\xbob+1.5, \ybob+0.5) to [out=20,in=-120] (\xauth-0.5,\yauth-0.5);
+%\node[align=left, mLightBrown] at  (\xbob+2.3, \ybob+0.5) 
+%	{$F$}; 
+	
+	 \draw[-triangle 60, mDarkBrown] (\xauth-0.5,\yauth-0.5) to [in=20,out=-120] (\xbob+1.5, \ybob+0.5);
+\node[align=left, mDarkBrown] at  (\xbob+2.3, \ybob+0.5) 
+	{$\skf$}; 
+
+ \draw[-triangle 60, mLightBrown] (\xbob+1.1, \ybob+0.9) to [in=200,out=70] (\xauth-1, \yauth) ;
+ \node[align=left, mLightBrown] at  (\xauth-2, \yauth) 
+	{$F$}; 
+	
+% \draw[-triangle 60, mDarkBrown] (\xauth-1, \yauth) to [out=200,in=70] (\xbob+1.1, \ybob+0.9);
+% \node[align=left, mDarkBrown] at  (\xauth-2, \yauth) 
+%	{$\skf$}; 
+ }
+
+\onslide<2->{
+\node[cloud, cloud puffs=15.7, cloud ignores aspect, minimum width=3cm, minimum height=1.7cm, align=center, draw, mLightBrown] (cloud) at (\xbob, \ybob) {\textbf{e-mail server} \\ F, \textcolor{mDarkBrown}{$\skf$}};
+}
+ \onslide<3>{
+\node[inner sep=0pt] at (\xalice ,\yalice)
+ {\includegraphics[width=0.1\textwidth]{img/email.png}};
+\node[align=center, black] at (\xalice ,\yalice-0.7) {$m$}; 
+
+\node[inner sep=0pt] at (\xspam ,\yspam)
+ {\includegraphics[width=.1\textwidth]{img/spam.png}};
+\node[align=center, black] at (\xspam, \yspam-0.8) {$m^*$}; 
+ }
+ 
+  \onslide<4>{
+ \node[inner sep=0pt] at (\xalice ,\yalice)
+ {\includegraphics[width=.1\textwidth]{img/email-enc.png}};
+
+\node[align=center, amaranth] at (\xalice ,\yalice-0.7) {$C = \Enc(\mpk,m)$};
+
+\node[inner sep=0pt] at (\xspam ,\yspam)
+ {\includegraphics[width=.1\textwidth]{img/spam-enc.png}};
+\node[align=center, mDarkBrown] at (\xspam, \yspam-0.8) {$C^*= \Enc(\mpk,m^*)$}; 
+ }
+ 
+ \onslide<5->{
+ \node[inner sep=0pt] at (\xalice ,\yalice)
+ {\includegraphics[width=.1\textwidth]{img/email-enc.png}};
+   
+\draw[-triangle 60, amaranth, thick] (\xalice+1, \yalice-0.5) to [out=-20,in=130] (\xbob-1.5,\ybob+0.5);
+
+\node[align=center, amaranth] at (\xalice+1.8, \yalice-0.5) {$C$};
+
+\node[inner sep=0pt] at (\xspam ,\yspam)
+ {\includegraphics[width=.1\textwidth]{img/spam-enc.png}};
+
+\draw[-triangle 60, mDarkBrown, thick] (\xspam+1, \yspam+0.5) to [out=20,in=-130] (\xbob-1.5,\ybob-0.5);
+   
+\node[align=center, mDarkBrown] at (\xspam+1.8, \yspam+0.5) {$C^*$}; 
+ }
+ 
+ \onslide<6->{
+ \node[align=center, amaranth] at (\xbob+2.5, \ybob+2.5) {$\Dec(\skf, C) = 0$};
+  \node[align=center, mDarkBrown] at (\xbob+2.5, \ybob+2) {$\Dec(\skf, C^*) = 1$};
+  }
+ 
+ \onslide<7->{
+  \node[inner sep=0pt] at (\xinbox ,\yinbox)
+ {\includegraphics[width=.1\textwidth]{img/inbox.png}};
+ 
+   \node[inner sep=0pt] at (\xbin ,\ybin)
+ {\includegraphics[width=.1\textwidth]{img/bin.png}};
+ 
+ 
+ \draw[-triangle 60, amaranth, thick] (\xbob+1.5, \ybob-0.5) to [out=-20,in=100] (\xinbox,\yinbox+0.5);
+ \node[align=center, black] at (\xinbox,\yinbox-0.7) {inbox};
+\node[align=center, amaranth] at (\xinbox-0.5,\yinbox+1) {$C$};
+
+\node[inner sep=0pt] at (\xspam ,\yspam)
+ {\includegraphics[width=.1\textwidth]{img/spam-enc.png}};
+
+\draw[-triangle 60, mDarkBrown, thick] (\xbob+1.6, \ybob-0.4) to [out=20,in=110] (\xbin-0.1 ,\ybin+0.75);
+\node[align=center, black] at (\xbin ,\ybin-0.8) {quarantine};
+\node[align=center, mDarkBrown] at (\xbin-1 ,\ybin+2) {$C^*$};
+ }
+ 
+ \onslide<7->{
+\node[align=left] at  (4 ,\yinbox-1.5) 
+	{\large \textcolor{mLightBrown}{e-mail server} learns \textbf{one bit of information}};
+}
+\end{tikzpicture}
+\end{figure}
+\end{frame}

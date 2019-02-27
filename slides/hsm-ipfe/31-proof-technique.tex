@@ -1,0 +1,37 @@
+\begin{frame}{Proof technique}
+\begin{figure}
+\begin{tikzpicture}
+\onslide<1>{
+\node[align=left] at  (0,0) 
+	{$\vec{C} = (C_0=g_p^r, C_1=f^{y_{\textcolor{amaranth}{b^*},1}}\cdot h_1^r, \dots , C_{\ell}=f^{y_{\textcolor{amaranth}{b^*},\ell}}\cdot h_{\ell}^r)$};
+	}
+
+\onslide<2>{
+\node[align=left] at  (0,0) 
+	{$\vec{C} = (C_0=g_p^r, C_1=f^{y_{\textcolor{amaranth}{b^*},1}}\cdot \textcolor{mLightBrown}{C_0^{t_1}}, \dots , C_{\ell}=f^{y_{\textcolor{amaranth}{b^*},\ell}}\cdot \textcolor{mLightBrown}{C_0^{t_{\ell}}})$};
+	}
+	
+\onslide<3->{
+\node[align=left] at  (0,0) 
+	{$\vec{C} = (C_0=g_p^r\textcolor{mLightBrown}{f^u}, C_1=f^{y_{\textcolor{amaranth}{b^*},1}}\cdot C_0^{t_1}, \dots , C_{\ell}=f^{y_{\textcolor{amaranth}{b^*},\ell}}\cdot C_0^{t_{\ell}})$};
+	}
+
+\end{tikzpicture}
+\end{figure}
+\onslide<1->{
+\begin{itemize}
+\item \textcolor{mLightBrown}{Game 0} original security game
+\onslide<2->{\item \textcolor{mLightBrown}{Game 1} use \textbf{secret key} to compute challenge ciphertext}% \cite{EC:CraSho02}
+\onslide<3->{\item \textcolor{mLightBrown}{Game 2} indistinguishable from Game 1 under the $\HSM$ assumption.}
+\end{itemize}
+}
+
+\onslide<4->{
+In Game $2$, from $\A$'s view \textcolor{amaranth}{$b^*$ is \textbf{statistically hidden}}, given
+\begin{itemize}
+\item the public key
+\item the challenge ciphertext
+\item key derivation queries
+\end{itemize}
+}
+\end{frame}

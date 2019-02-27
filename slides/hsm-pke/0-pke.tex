@@ -1,0 +1,92 @@
+\begin{frame}{Homomorphic PKE scheme mod $p$ from $\HSM$}
+\begin{figure}[H]
+\begin{tikzpicture}
+
+% Setup x,y coordinates; width and height
+\def\xsetup{-1}
+\def\ysetup{9}
+\def\wsetup{11}
+\def\hsetup{1.2}
+\def\topsetup{\ysetup+\hsetup}
+
+% Enc x,y coordinates; width and height
+\def\wenc{11}
+\def\henc{2.1}
+\def\xenc{-1}
+\def\yenc{\ysetup - \henc - 0.2}
+\def\topenc{\yenc+\henc}
+
+% Decryption x,y coordinates; width and height
+\def\hdec{1.7}
+\def\wdec{11}
+\def\xdec{-1}
+\def\ydec{\yenc-\hdec-0.2}
+\def\topdec{\ydec+\hdec}
+
+% Normal spacing top and first text
+\def\ntopspace{0.3}
+
+% Orange boxes:
+\onslide<1>{
+% Setup 
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xsetup,\ysetup) rectangle ++(\wsetup,\hsetup);
+}
+
+\onslide<2>{
+% Encryption
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xenc,\yenc) rectangle ++(\wenc,\henc);
+}
+
+
+% Setup
+\onslide<1->{
+\node[align=left] at  (\xsetup + 0.7 ,\topsetup - \ntopspace) {\underline{$\Kg$}};
+
+\node[align=left] at  (\xsetup + 3 ,\topsetup - \ntopspace) 
+	{Sample  ${t}$}; %    \hookleftarrow \D_p$};\\
+\node[align=left] at  (\xsetup + 6.2 ,\topsetup - \ntopspace)  
+	{and compute $\quad h = g_p^{t}$};
+\node[align=left] at  (\xsetup + \wsetup/2 ,\topsetup - \ntopspace - 0.5)  
+	{$\sk = {t}\;$ and $\;\pk = h$}; 
+}
+
+\onslide<2->{
+% Setup 
+ \draw[rounded corners=5pt]
+  (\xsetup,\ysetup) rectangle ++(\wsetup,\hsetup);
+% Encryption
+\node[align=left] at  (\xenc + 0.45,\topenc - 0.25) {\underline{\textbf{Enc}}};
+\node[align=left] at  (\xenc + 3.7,\topenc - 1) 
+	{
+	\textbf{Plaintext:} $m \in \Zp$\\
+	\textbf{Sample randomness} $r$\\%    \hookleftarrow \D_p$\\
+    \textbf{Ciphertext:}\\
+    \hspace{2cm}$(C_0, C_1) = (g_p^r, f^{m}\cdot h^r)$};
+}
+
+
+\onslide<3->{
+% Encryption
+ \draw[rounded corners=5pt]
+  (\xenc,\yenc) rectangle ++(\wenc,\henc);
+% Decryption
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xdec,\ydec) rectangle ++(\wdec,\hdec);
+
+\node[align=left] at  (\xdec + 0.45 ,\topdec - 0.3) {\underline{\textbf{Dec}}};
+\node[align=left] (input) at (\xdec + 3,\topdec - 0.3) 
+	{\textbf{From $(C_0,C_1)$ and $\sk = t$ :}};
+
+\node[align=left] at (\xdec + 4, \topdec- 1) {$C_1/C_0^{t}$};
+\draw[-triangle 60, mDarkBrown] (\xdec + 5.3, \topdec-1) -- ++(1,0) 
+	node [midway,above] {$\DL$};
+            \node[align=left] at (\xdec + 7.5, \topdec -1) 
+            {$m \mod p$};
+
+}
+\end{tikzpicture}
+\end{figure}
+\end{frame}
+

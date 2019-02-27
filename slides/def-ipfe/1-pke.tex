@@ -1,0 +1,56 @@
+\begin{frame}{Traditional Encryption: All or Nothing}
+\begin{figure}
+    \centering
+\begin{tikzpicture}
+    % Variables
+% Context x,y coordinates; width and height
+\def\xalice{0}
+\def\yalice{7}
+\def\walice{1.5}
+\def\halice{0.6}
+\def\topalice{\yalice+\halice}
+
+% bob x,y coordinates; width and height
+\def\xbob{6}
+\def\ybob{7}
+\def\wbob{1.5}
+\def\hbob{.6}
+\def\topbob{\ybob+\hbob}
+
+ \draw[rounded corners=5pt, mLightBrown, fill=mLightBrown]
+  (\xbob,\ybob) rectangle ++(\wbob,\hbob);
+  \node[align=left] at  (\xbob + \wbob/2 ,\ybob+\hbob/2) 
+	{Bob};
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-\hbob/2) 
+	{$(\pk_{Bob}, \sk_{Bob})$};
+  
+ \draw[rounded corners=5pt]
+  (\xalice,\yalice) rectangle ++(\walice,\halice);
+\node[align=left] at  (\xalice + \walice/2 ,\yalice+\halice/2) 
+	{Alice};
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-\halice/2) 
+	{m};	
+	
+\onslide<2->{
+\draw[-triangle 60, mLightBrown] (\xbob-0.8,\ybob-1) -- ++(-2.7,0) 
+	node [midway,above] {$\pk_{Bob}$};
+}
+
+\onslide<3->{
+\node[align=left] at  (\xalice + \walice/2 ,\yalice-1.5) 
+	{$C =\Enc (\pk_{Bob}, m)$};
+\draw[-triangle 60] (\xalice + \walice + 1,\yalice-2) -- ++(2.7,0) 
+	node [midway,above] {$C$};
+}
+
+\onslide<4->{
+\node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-2.5) 
+	{$m=\Dec(\sk_{Bob},C)$};
+}
+\onslide<5->{
+\node[align=left] at  (3.5 ,\ybob-3.5) 
+	{\large Bob gets \textbf{all} the information in $m$.};
+}
+\end{tikzpicture}
+\end{figure}
+\end{frame}

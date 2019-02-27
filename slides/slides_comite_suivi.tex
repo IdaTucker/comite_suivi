@@ -1,0 +1,180 @@
+%\documentclass[10pt,notes]{beamer}       % print frame + notes
+%\documentclass[10pt,notes=only]{beamer}   % only notes
+\documentclass[10pt]{beamer}  
+
+
+\usetheme[progressbar=frametitle, numbering=counter]{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage{algcompatible}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage{eufrak}
+\usepackage{tablefootnote}
+\usepackage[flushleft]{threeparttable} 
+\usepackage[scale=2]{ccicons}
+\usetikzlibrary{arrows, calc, positioning, shapes}
+\usepackage{tikz-3dplot}
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\usepackage[skins,theorems]{tcolorbox}
+\usepackage{stackengine}
+\usepackage{xspace}
+\tcbset{highlight math style={enhanced,
+  colframe=mLightBrown,colback=black!2,arc=0pt,boxrule=1pt}}
+\usepackage{tabularx} 
+
+
+
+\input{newcommand.tex}
+
+\title{Advanced Cryptographic Systems\\ 
+from Homomorphic Encryption modulo \texorpdfstring{$p$}{p}}
+\date{}
+\author{Ida Tucker\inst{}}
+\institute{\inst{}Guilhem Castagnos \& Fabien Laguillaumie
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Table of contents}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Linearly Homomorphic Public Key Encryption}
+
+\input{homom-pke/1-def-homom-pke.tex}
+
+\section{Linearly Homomorphic PKE from [CL15]}
+\subsection{Framework}
+\begin{frame}{Framework [CL15]}
+The framework of Castagnos and Laguillaumie allows for:
+\begin{itemize}
+\item Linearly Homomorphic Encryption Schemes
+\begin{itemize}
+\item \textbf{Message Space of Prime order}
+\item Efficient decryption
+\end{itemize}
+\item Mathematical assumptions $\Rightarrow$ Provable Security
+\item Concrete instantiation (in class groups)
+\end{itemize}
+\end{frame}
+
+\input{framework/1-framework.tex}
+
+\input{framework/2-high-level.tex}
+
+\subsection{The Linearly Homomorphic PKE Scheme}
+
+\input{hsm-pke/0-pke.tex}
+
+\input{hsm-pke/02-security-pke.tex}
+
+%\input{hsm-pke/03-pke-game0.tex}
+
+%\input{hsm-pke/04-pke-game1.tex}
+
+%\input{hsm-pke/05-pke-game2.tex}
+
+%\input{hsm-pke/06-pke-game3.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Inner Product Functional Encryption (IPFE)}
+\subsection{Functional Encryption (FE)}
+\input{def-ipfe/1-pke.tex}
+
+\input{def-ipfe/21-fe-motivation.tex}
+
+\input{def-ipfe/22-fe-simple.tex}
+
+\input{def-ipfe/2-fe-fig.tex}
+
+\input{def-ipfe/5-ind-security.tex}
+
+\input{def-ipfe/61-ipfe-motivation.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Inner Product Functionality}
+
+\input{def-ipfe/6-ip-functionality.tex}
+
+\input{def-ipfe/7-history.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IPFE modulo \texorpdfstring{$p$}{p} from [CL15]}
+
+\input{hsm-ipfe/1-scheme.tex}
+
+\input{hsm-ipfe/2-security.tex}
+
+\input{hsm-ipfe/31-proof-technique.tex}
+
+
+\section{Enhancing Security}
+\input{cca-security/1-cca-adversary.tex}
+
+
+\section{Threshold Signatures}
+\begin{frame}{Two party ECDSA signatures}
+More recently we have been working with Dario Catalano and Federico ... on a different advances cryptographic primitive: two party ECDSA. Again we devise a generic construction from hash proof systems with homomorphic properties and which encode a message modulo a prime $p$.
+
+As mentioned in the introduction, the homomorphic properties of our framework can be used to build various advanced cryptographic primitives, thus after spending some time on IPFE we moved on to studying the construction of two-party elliptic curve digital signatures (ECDSA).
+%
+ECDSA is a widely adopted digital signature standard. Unfortunately, efficient distributed variants of this primitive are notoriously hard to achieve. 
+
+Threshold signatures allow $n$ users to share a common key in such a way that any subset of $t$ parties can use this key to sign, while any coalition of less than $t$ can do nothing. 
+%
+Such signatures are in high demand today; partly due to their applications to secure cryptocurrency wallets (where key shares are spread over multiple devices and so are hard to steal) and cryptocurrency custody solutions (where large sums of invested cryptocurrency are strongly protected by splitting the key between a bank/financial institution, the customer who owns the currency, and possibly a third-party trustee, in multiple shares at each).
+
+For the two party case ($t=n=2$), Lindell \cite{C:Lindell17} recently published an efficient solution which, unfortunately, relies on an interactive, non standard, assumption. We first generalized Lindell’s solution using a tool from \cite{EC:CraSho02}, before instantiating the construction from our assumptions defined in \cite{AC:CasLagTuc18}. This generic method results in a tight security proof relying on standard assumptions, while
+%
+our instantiation is comparable to that of Lindell's in terms of timings, and significantly improves communication cost.
+
+This work has been submitted to \textbf{CRYPTO 2019}. The final notification will be announced in April. This is joint work with my supervisors, along with Catalano and Savasta (University of Catania).
+
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Last slide!}
+\begin{block}{Conclusion}
+\begin{itemize}
+\item Most efficient IPFE schemes to date
+\item First IPFE mod a prime that recover the result whatever its size
+\item Have also constructed Chosen Ciphertext Attack Secure schemes 
+\item Interesting framework, can be applied to other primitives
+\end{itemize}
+\end{block}
+\begin{block}{Ongoing work}
+\begin{itemize}
+\item Threshold ECDSA using our underlying framework
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[standout]
+  Questions?
+\end{frame}
+
+
+\begin{frame}
+%
+% ---- Bibliography ----
+%
+\bibliographystyle{../alpha-short}
+\bibliography{../cryptobib/abbrev3,../cryptobib/crypto}
+\end{frame}
+\end{document}
+
