@@ -5,7 +5,7 @@
 \item \textcolor{mLightBrown}{\textbf{$\Dec$($\sk,c$)}} $\rightarrow$ message $m$
 \end{itemize}
 Modifying $c \rightsquigarrow c'$ \\
-\hspace{1cm} $\Rightarrow$ impossible to decrypt $c'$.
+\hspace{1cm} $\Rightarrow$ impossible to decrypt $c'$
 \end{frame}
 
 \begin{frame}{Linearly Homomorphic PKE}
@@ -18,16 +18,17 @@ Anyone can publicly modify ciphertexts to manipulate plaintexts
 \end{frame}
 
 \begin{frame}{Security PKE}
-\textbf{Security against passive adversaries:}
+\textcolor{red}{Oscar's Goal:} Given $\pk$, and $c=\Enc(\pk,m)$, get info on $m$.
+\textcolor{darkjunglegreen}{\textbf{Security against passive adversaries:}}
 \begin{itemize}
 \item CPA security: Oscar can encrypt plaintexts of his choice \\(Chosen Plaintext Attack)
 \end{itemize}
-\onslide<2->{\textbf{Security against \textbf{active} adversaries:}
+\onslide<2->{\textcolor{darkjunglegreen}{\textbf{Security against active adversaries:}}
 \begin{itemize}
-\item CCA security: Oscar wants to decrypt a challenge ciphertext $c$, he can request the decryption of ciphertexts $c'\neq c$ of his choice (Chosen Ciphertext Attack)
+\item CCA security: Oscar can request decryption of $c'\neq c$ of his choice (Chosen Ciphertext Attack)
 \end{itemize}
 }
-\onslide<3->{\textbf{No CCA security for homomorphic schemes:}
+\onslide<3->{\textcolor{red}{No CCA security for homomorphic schemes:}
 \begin{itemize}
 \item Oscar computes $c'\gets \Enc(\pk,0)$ and $c_1\gets EvalSum(\pk, c, c')$
 \item Oscar requests the decryption of $c_1$ to get $m$.

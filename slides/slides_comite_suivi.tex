@@ -64,7 +64,7 @@ The framework of Castagnos and Laguillaumie allows for:
 \item \textbf{Message Space of Prime order}
 \item Efficient decryption
 \end{itemize}
-\item Mathematical assumptions $\Rightarrow$ Provable Security
+\item Well studied mathematical assumptions $\Rightarrow$ Provable Security
 \item Concrete instantiation (in class groups)
 \end{itemize}
 \end{frame}
@@ -125,54 +125,75 @@ The framework of Castagnos and Laguillaumie allows for:
 
 
 \section{Threshold Signatures}
+
 \begin{frame}{Digital Signatures}
-Define
+\textcolor{red}{Goal:} \textbf{Authenticity}, \textbf{Integrity} and \textbf{Non Repudiation} of e-documents
+
+\textcolor{red}{Algorithms:} 
+\begin{itemize}
+\item \textcolor{mLightBrown}{\textbf{$\Kg$($1^\lambda$)}} $\rightarrow$ secret signing key $\sk$ and public verification key $\vk$
+\item \textcolor{mLightBrown}{\textbf{$\Sign$($\sk,m$)}} $\rightarrow$ signature $\sigma$ for $m$ under signing key $\sk$
+\item \textcolor{mLightBrown}{\textbf{$\Verif$($\vk,\sigma, m$)}} $\rightarrow$ \textsf{accept}/\textsf{reject}
+\end{itemize}
+\textcolor{red}{Security (informal):} cannot produce valid signature for $m$ under $\vk$ without knowing $\sk$, even given many $\sigma'=\Sign(\sk,m')$ for $m'\neq m$.
 \end{frame}
+
+\begin{frame}{Threshold Cryptography -- Signatures}
+
+\textcolor{red}{$(n,t)$ secret sharing scheme} 
+\begin{itemize}
+\item Share secret $S$ among $n$ users, require $t$ users for reconstruction
+\end{itemize}
+\textcolor{red}{$(n,t)$ threshold signature scheme} 
+\begin{itemize}
+\item Share private \textbf{signing key} $\sk$ among $n$ users, require $t$ users for \textbf{signing}
+%\item Participant $P_i$ gets share $sk_i$
+\end{itemize}
+\end{frame}
+
 \begin{frame}{ECDSA}
-Explain that it is a digital signature widely used, especially in bitcoin
+\textcolor{mLightBrown}{ECDSA} Digital signature that uses elliptic curve cryptography
+
+\textcolor{red}{Threshold ECDSA} in high demand:
+\begin{itemize}
+\item secure cryptocurrency wallets $\rightsquigarrow$ protect key against theft
+\item cryptocurrency custody solutions $\rightsquigarrow$ split key between bank/customer/3rd party trustee
+\end{itemize}
+\textcolor{red}{Difficult:} share $k = k_1 + k_2 + \dots + k_n \mod q$, \\
+\hspace{1.3cm} need to compute $k^{-1} \mod q$ to sign.
+
+\textcolor{darkjunglegreen}{[Lin17]} efficient solution for 2-Party $(n=t=2)$\\
+\hspace{1cm} \textcolor{red}{Problem:} interactive, non standard, assumption.
+
 \end{frame}
-\begin{frame}{Threshold Signatures}
-define
-\end{frame}
+
 \begin{frame}{Tight security for two-Party ECDSA from HPS}
-Explain that it is notoriously difficult to acheive, and our improvements on Lindell's work
+\begin{itemize}
+\item Generic construction from homomorphic HPS to 2-Party ECDSA
+\item Tight security proof
+\item Instantiation in CL framework
+\begin{itemize}
+\item \textbf{Timings:} comparable to [Lin17]
+\item \textbf{Communication cost:} significantly less than [Lin17]
+\end{itemize}
+\end{itemize}
 \end{frame}
-
-\begin{frame}{Two party ECDSA signatures}
-More recently we have been working with Dario Catalano and Federico ... on a different advances cryptographic primitive: two party ECDSA. Again we devise a generic construction from hash proof systems with homomorphic properties and which encode a message modulo a prime $p$.
-
-As mentioned in the introduction, the homomorphic properties of our framework can be used to build various advanced cryptographic primitives, thus after spending some time on IPFE we moved on to studying the construction of two-party elliptic curve digital signatures (ECDSA).
-%
-ECDSA is a widely adopted digital signature standard. Unfortunately, efficient distributed variants of this primitive are notoriously hard to achieve. 
-
-Threshold signatures allow $n$ users to share a common key in such a way that any subset of $t$ parties can use this key to sign, while any coalition of less than $t$ can do nothing. 
-%
-Such signatures are in high demand today; partly due to their applications to secure cryptocurrency wallets (where key shares are spread over multiple devices and so are hard to steal) and cryptocurrency custody solutions (where large sums of invested cryptocurrency are strongly protected by splitting the key between a bank/financial institution, the customer who owns the currency, and possibly a third-party trustee, in multiple shares at each).
-
-For the two party case ($t=n=2$), Lindell \cite{C:Lindell17} recently published an efficient solution which, unfortunately, relies on an interactive, non standard, assumption. We first generalized Lindell’s solution using a tool from \cite{EC:CraSho02}, before instantiating the construction from our assumptions defined in \cite{AC:CasLagTuc18}. This generic method results in a tight security proof relying on standard assumptions, while
-%
-our instantiation is comparable to that of Lindell's in terms of timings, and significantly improves communication cost.
-
-This work has been submitted to \textbf{CRYPTO 2019}. The final notification will be announced in April. This is joint work with my supervisors, along with Catalano and Savasta (University of Catania).
-
-
-\end{frame}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Last slide!}
 \begin{block}{Conclusion}
 \begin{itemize}
-\item Most efficient IPFE schemes to date
+\item Most efficient CPA-secure IPFE schemes to date
 \item First IPFE mod a prime that recover the result whatever its size
-\item Have also constructed Chosen Ciphertext Attack Secure schemes 
-\item Interesting framework, can be applied to other primitives
+\item Homomorphic Hash Proof Systems from CL framework
+\item Chosen Ciphertext Attack Secure IPFE schemes 
+\item 2-Party ECDSA from Homomorphic Hash Proof Systems
 \end{itemize}
 \end{block}
 \begin{block}{Ongoing work}
 \begin{itemize}
-\item Threshold ECDSA using our underlying framework
+\item Full Threshold ECDSA
 \end{itemize}
 \end{block}
 \end{frame}

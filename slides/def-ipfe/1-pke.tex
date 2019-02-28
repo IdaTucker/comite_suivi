@@ -31,23 +31,23 @@
 \node[align=left] at  (\xalice + \walice/2 ,\yalice-\halice/2) 
 	{m};	
 	
-\onslide<2->{
+{
 \draw[-triangle 60, mLightBrown] (\xbob-0.8,\ybob-1) -- ++(-2.7,0) 
 	node [midway,above] {$\pk_{Bob}$};
 }
 
-\onslide<3->{
+{
 \node[align=left] at  (\xalice + \walice/2 ,\yalice-1.5) 
 	{$C =\Enc (\pk_{Bob}, m)$};
 \draw[-triangle 60] (\xalice + \walice + 1,\yalice-2) -- ++(2.7,0) 
 	node [midway,above] {$C$};
 }
 
-\onslide<4->{
+{
 \node[align=left, mLightBrown] at  (\xbob + \wbob/2 ,\ybob-2.5) 
 	{$m=\Dec(\sk_{Bob},C)$};
 }
-\onslide<5->{
+{
 \node[align=left] at  (3.5 ,\ybob-3.5) 
 	{\large Bob gets \textbf{all} the information in $m$.};
 }
