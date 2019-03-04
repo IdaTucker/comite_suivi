@@ -50,11 +50,72 @@ from Homomorphic Encryption modulo \texorpdfstring{$p$}{p}}
   \tableofcontents[hideallsubsections]
 \end{frame}
 
-\section{Linearly Homomorphic Public Key Encryption}
+\section{Motivation for Advanced Cryptographic Systems}
+\subsection{Functional Encryption}
+\input{def-ipfe/1-pke.tex}
+\input{def-ipfe/21-fe-motivation.tex}
+\input{def-ipfe/22-fe-simple.tex}
+\input{def-ipfe/2-fe-fig.tex}
+%\input{def-ipfe/5-ind-security.tex}
+
+
+\subsection{Threshold Signatures}
+\begin{frame}{Digital Signatures}
+\textcolor{red}{Goal:} \textbf{Authenticity}, \textbf{Integrity} and \textbf{Non Repudiation} of e-documents
+
+\textcolor{red}{Algorithms:} 
+\begin{itemize}
+\item \textcolor{mLightBrown}{\textbf{$\Kg$($1^\lambda$)}} $\rightarrow$ secret signing key $\sk$ and public verification key $\vk$
+\item \textcolor{mLightBrown}{\textbf{$\Sign$($\sk,m$)}} $\rightarrow$ signature $\sigma$ for $m$ under signing key $\sk$
+\item \textcolor{mLightBrown}{\textbf{$\Verif$($\vk,\sigma, m$)}} $\rightarrow$ \textsf{accept}/\textsf{reject}
+\end{itemize}
+\textcolor{red}{Security (informal):} cannot produce valid signature for $m$ under $\vk$ without knowing $\sk$, even given many $\sigma'=\Sign(\sk,m')$ for $m'\neq m$.
+\end{frame}
+
+\begin{frame}{Applications and weaknesses}
+\textbf{Applications:}
+\begin{itemize}
+\item legally binding (as traditional document signatures)
+\item budget, public/private laws, and congressional bills published with digital signatures
+\item cryptocurrencies
+\end{itemize}
+\onslide<2->{
+\textcolor{red}{Problem:} Anyone with $\sk$ can produce valid signatures 
+
+\hspace{2cm}$\rightsquigarrow$ single point of failure $\sk$
+
+}
+\onslide<3->{
+\textcolor{red}{\hspace{2cm}$\rightsquigarrow$Key theft = financial loss (cryptocurrency)}
+}
+\onslide<4->{
+
+\textcolor{darkjunglegreen}{Solution:} share key between various users
+
+\hspace{2cm}$\rightsquigarrow$ require $>1$ user to sign
+
+}
+\end{frame}
+
+\begin{frame}{Threshold Cryptography -- Signatures}
+
+\textcolor{red}{$(n,t)$ secret sharing scheme} 
+\begin{itemize}
+\item Share secret $S$ among $n$ users, require $t$ users for reconstruction
+\end{itemize}
+\textcolor{red}{$(n,t)$ threshold signature scheme} 
+\begin{itemize}
+\item Share private \textbf{signing key} $\sk$ among $n$ users, require $t$ users for \textbf{signing}
+%\item Participant $P_i$ gets share $sk_i$
+\end{itemize}
+\end{frame}
+
+
+\section{Building Block: Linearly Homomorphic Public Key Encryption}
 
 \input{homom-pke/1-def-homom-pke.tex}
 
-\section{Linearly Homomorphic PKE from [CL15]}
+\section{A Linearly Homomorphic PKE from [CL15]}
 \subsection{Framework}
 \begin{frame}{Framework [CL15]}
 The framework of Castagnos and Laguillaumie allows for:
@@ -89,67 +150,32 @@ The framework of Castagnos and Laguillaumie allows for:
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Inner Product Functional Encryption (IPFE)}
-\subsection{Functional Encryption (FE)}
-\input{def-ipfe/1-pke.tex}
+\section{Our Contributions}
 
-\input{def-ipfe/21-fe-motivation.tex}
-
-\input{def-ipfe/22-fe-simple.tex}
-
-\input{def-ipfe/2-fe-fig.tex}
-
-\input{def-ipfe/5-ind-security.tex}
+\subsection{Inner Product Functional Encryption}
 
 \input{def-ipfe/61-ipfe-motivation.tex}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Inner Product Functionality}
 
 \input{def-ipfe/6-ip-functionality.tex}
 
 \input{def-ipfe/7-history.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{IPFE modulo \texorpdfstring{$p$}{p} from [CL15]}
+%\section{IPFE modulo \texorpdfstring{$p$}{p} from [CL15]}
 
-\input{hsm-ipfe/1-scheme.tex}
+%\input{hsm-ipfe/1-scheme.tex}
 
-\input{hsm-ipfe/2-security.tex}
+%\input{hsm-ipfe/2-security.tex}
 
-\input{hsm-ipfe/31-proof-technique.tex}
+%\input{hsm-ipfe/31-proof-technique.tex}
 
 
-\section{Enhancing Security}
+\subsection{Enhancing Security}
 \input{cca-security/1-cca-adversary.tex}
 
 
-\section{Threshold Signatures}
-
-\begin{frame}{Digital Signatures}
-\textcolor{red}{Goal:} \textbf{Authenticity}, \textbf{Integrity} and \textbf{Non Repudiation} of e-documents
-
-\textcolor{red}{Algorithms:} 
-\begin{itemize}
-\item \textcolor{mLightBrown}{\textbf{$\Kg$($1^\lambda$)}} $\rightarrow$ secret signing key $\sk$ and public verification key $\vk$
-\item \textcolor{mLightBrown}{\textbf{$\Sign$($\sk,m$)}} $\rightarrow$ signature $\sigma$ for $m$ under signing key $\sk$
-\item \textcolor{mLightBrown}{\textbf{$\Verif$($\vk,\sigma, m$)}} $\rightarrow$ \textsf{accept}/\textsf{reject}
-\end{itemize}
-\textcolor{red}{Security (informal):} cannot produce valid signature for $m$ under $\vk$ without knowing $\sk$, even given many $\sigma'=\Sign(\sk,m')$ for $m'\neq m$.
-\end{frame}
-
-\begin{frame}{Threshold Cryptography -- Signatures}
-
-\textcolor{red}{$(n,t)$ secret sharing scheme} 
-\begin{itemize}
-\item Share secret $S$ among $n$ users, require $t$ users for reconstruction
-\end{itemize}
-\textcolor{red}{$(n,t)$ threshold signature scheme} 
-\begin{itemize}
-\item Share private \textbf{signing key} $\sk$ among $n$ users, require $t$ users for \textbf{signing}
-%\item Participant $P_i$ gets share $sk_i$
-\end{itemize}
-\end{frame}
+\subsection{Threshold Signatures}
 
 \begin{frame}{ECDSA}
 \textcolor{mLightBrown}{ECDSA} Digital signature that uses elliptic curve cryptography
@@ -163,9 +189,11 @@ The framework of Castagnos and Laguillaumie allows for:
 \hspace{1.3cm} need to compute $k^{-1} \mod q$ to sign.
 
 \textcolor{darkjunglegreen}{[Lin17]} efficient solution for 2-Party $(n=t=2)$\\
-\hspace{1cm} \textcolor{red}{Problem:} interactive, non standard, assumption.
+\hspace{1cm} \textcolor{red}{Problem:} interactive, non standard assumption.
 
 \end{frame}
+
+
 
 \begin{frame}{Tight security for two-Party ECDSA from HPS}
 \begin{itemize}
